@@ -10,8 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Embedded;
 import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -22,10 +22,14 @@ public class EventDTO {
     private String eventName;
     private String description;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:MM")
-    private LocalDateTime startDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:MM")
-    private LocalDateTime endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
+    @DateTimeFormat(pattern = "HH:MM")
+    private LocalTime startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDate;
+    @DateTimeFormat(pattern = "HH:MM")
+    private LocalTime endTime;
 
     @Embedded
     private Address address;
@@ -35,25 +39,14 @@ public class EventDTO {
     private Category category;
     private String organizer;
 
-    public EventDTO(String eventName, String description, LocalDateTime startDate, LocalDateTime endDate,
-                 Address address, int availability, BigDecimal price, Category category,
-                 String organizer) {
-        this.eventName = eventName;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.address = address;
-        this.availability = availability;
-        this.price = price;
-        this.category = category;
-        this.organizer = organizer;
-    }
 
     public EventDTO(EventDTO eventDTO) {
         this.eventName = eventDTO.getEventName();
         this.description = eventDTO.getDescription();
         this.startDate = eventDTO.getStartDate();
+        this.startTime = eventDTO.startTime;
         this.endDate = eventDTO.getEndDate();
+        this.endTime = eventDTO.endTime;
         this.address = eventDTO.getAddress();
         this.availability = eventDTO.getAvailability();
         this.price = eventDTO.getPrice();

@@ -32,10 +32,10 @@ public class UserService {
             if (userDTO.getEmail() != null) {
                 user.setEmail(userDTO.getEmail());
             }
-            if (userDTO.getEmail() != null) {
+            if (userDTO.getPhoneNumber() != null) {
                 user.setPhoneNumber(userDTO.getPhoneNumber());
             }
-            if (userDTO.getEmail() != null) {
+            if (userDTO.getAccountType() != null) {
                 user.setAccountType(userDTO.getAccountType());
             }
         userRepository.save(user);

@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -26,6 +23,8 @@ public class User {
     private String password;
     private String email;
     private String phoneNumber;
+
+    @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
     public User(String username, String password, String email, String phoneNumber, AccountType accountType) {

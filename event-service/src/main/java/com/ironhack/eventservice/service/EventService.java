@@ -5,6 +5,9 @@ import com.ironhack.eventservice.dao.Event;
 import com.ironhack.eventservice.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class EventService {
 
@@ -18,6 +21,16 @@ public class EventService {
     public Event getEventById(Long id) {
         return eventRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
+    }
+
+    public List<Event> getAllAvaliableEvents() {
+        List<Event> eventList = new ArrayList<>();
+        for (var event : eventRepository.findAll()) {
+            if (event.getAvailability() > 0) {
+                eventList.add(event);
+            }
+        }
+        return eventList;
     }
 
 
@@ -71,7 +84,9 @@ public class EventService {
                 eventDTO.getEventName(),
                 eventDTO.getDescription(),
                 eventDTO.getStartDate(),
+                eventDTO.getStartTime(),
                 eventDTO.getEndDate(),
+                eventDTO.getEndTime(),
                 eventDTO.getAddress(),
                 eventDTO.getAvailability(),
                 eventDTO.getPrice(),
@@ -86,7 +101,9 @@ public class EventService {
                 event.getEventName(),
                 event.getDescription(),
                 event.getStartDate(),
+                event.getStartTime(),
                 event.getEndDate(),
+                event.getEndTime(),
                 event.getAddress(),
                 event.getAvailability(),
                 event.getPrice(),

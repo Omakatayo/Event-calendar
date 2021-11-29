@@ -5,11 +5,12 @@ import com.ironhack.eventservice.dao.Event;
 import com.ironhack.eventservice.enums.Category;
 import com.ironhack.eventservice.repository.EventRepository;
 import com.ironhack.eventservice.service.EventService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -36,13 +37,13 @@ public class EventController {
     }
 
     @GetMapping("/bydate/{startDate}")
-    public List<Event> getAllEventsByStartDate(@PathVariable LocalDateTime startDate) {
+    public List<Event> getAllEventsByStartDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate) {
         return eventRepository.findByStartDate(startDate);
     }
 
-    @GetMapping("/byavailability/{availability}")
-    public List<Event> getAllEventsByAvailability(@PathVariable Integer availability) {
-        return eventRepository.findByAvailability(availability);
+    @GetMapping("/isavaliable")
+    public List<Event> getAllEventsByAvailability() {
+        return eventService.getAllAvaliableEvents();
     }
 
     @GetMapping("/bycategory/{category}")
