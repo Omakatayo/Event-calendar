@@ -43,6 +43,7 @@ public class Event {
     private Address address;
 
     private int availability;
+    private int registered;
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
@@ -53,7 +54,7 @@ public class Event {
 
     public Event(
             String eventName, String description, LocalDate startDate, LocalTime startTime,
-            LocalDate endDate, LocalTime endTime, Address address, int availability, BigDecimal price,
+            LocalDate endDate, LocalTime endTime, Address address, int availability, int registered, BigDecimal price,
             Category category, String organizer) {
         this.eventName = eventName;
         this.description = description;
@@ -63,6 +64,7 @@ public class Event {
         this.endTime = endTime;
         this.address = address;
         this.availability = availability;
+        this.registered = registered;
         this.price = price;
         this.category = category;
         this.organizer = organizer;

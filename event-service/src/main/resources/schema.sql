@@ -14,6 +14,7 @@ CREATE TABLE `event` (
     `city` VARCHAR(255),
     `country` VARCHAR(255),
     `availability` SMALLINT,
+    `registered` SMALLINT,
     `price` DECIMAL,
     `category` VARCHAR(255),
     `organizer` VARCHAR(255)

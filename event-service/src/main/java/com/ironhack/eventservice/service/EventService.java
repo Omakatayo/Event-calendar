@@ -4,6 +4,7 @@ import com.ironhack.eventservice.controller.dto.EventDTO;
 import com.ironhack.eventservice.dao.Event;
 import com.ironhack.eventservice.repository.EventRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class EventService {
                 () -> new NullPointerException("Event with id " + id + " not found!"));
     }
 
-    public List<Event> getAllAvaliableEvents() {
+    public List<Event> getAllAvailableEvents() {
         List<Event> eventList = new ArrayList<>();
         for (var event : eventRepository.findAll()) {
             if (event.getAvailability() > 0) {
@@ -73,6 +74,14 @@ public class EventService {
         return new EventDTO(convertEventToDTO(event));
     }
 
+    public void registerToEvent(Long id) {
+        Event event = eventRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("Event with id " + id + " not found!"));
+        event.setAvailability(event.getAvailability() - 1);
+        event.setRegistered(event.getRegistered() + 1);
+        eventRepository.save(event);
+    }
+
     public void deleteEvent(Long id) {
         Event event = eventRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
@@ -89,6 +98,7 @@ public class EventService {
                 eventDTO.getEndTime(),
                 eventDTO.getAddress(),
                 eventDTO.getAvailability(),
+                eventDTO.getRegistered(),
                 eventDTO.getPrice(),
                 eventDTO.getCategory(),
                 eventDTO.getOrganizer()
@@ -106,6 +116,7 @@ public class EventService {
                 event.getEndTime(),
                 event.getAddress(),
                 event.getAvailability(),
+                event.getRegistered(),
                 event.getPrice(),
                 event.getCategory(),
                 event.getOrganizer()

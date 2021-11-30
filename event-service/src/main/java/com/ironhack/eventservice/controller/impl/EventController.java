@@ -43,7 +43,7 @@ public class EventController {
 
     @GetMapping("/isavaliable")
     public List<Event> getAllEventsByAvailability() {
-        return eventService.getAllAvaliableEvents();
+        return eventService.getAllAvailableEvents();
     }
 
     @GetMapping("/bycategory/{category}")
@@ -74,6 +74,11 @@ public class EventController {
     @PutMapping("/update/{id}")
     public EventDTO updateEvent(@PathVariable Long id, @RequestBody EventDTO eventDTO) {
         return eventService.updateEvent(id, eventDTO);
+    }
+
+    @PutMapping("/register/{id}")
+    public void registerToEvent(@PathVariable Long id) {
+        eventService.registerToEvent(id);
     }
 
     @DeleteMapping("/delete/{id}")

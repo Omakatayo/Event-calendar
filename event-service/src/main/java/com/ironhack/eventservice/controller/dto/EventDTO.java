@@ -35,6 +35,7 @@ public class EventDTO {
     private Address address;
 
     private Integer availability;
+    private Integer registered;
     private BigDecimal price;
     private Category category;
     private String organizer;
@@ -49,6 +50,7 @@ public class EventDTO {
         this.endTime = eventDTO.endTime;
         this.address = eventDTO.getAddress();
         this.availability = eventDTO.getAvailability();
+        this.registered = eventDTO.getRegistered();
         this.price = eventDTO.getPrice();
         this.category = eventDTO.getCategory();
         this.organizer = eventDTO.getOrganizer();
