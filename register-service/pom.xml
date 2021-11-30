@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ironhack</groupId>
-    <artifactId>search-service</artifactId>
+    <artifactId>register-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>search-service</name>
-    <description>search-service</description>
+    <name>register-service</name>
+    <description>register-service</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2021.0.0-RC1</spring-cloud.version>

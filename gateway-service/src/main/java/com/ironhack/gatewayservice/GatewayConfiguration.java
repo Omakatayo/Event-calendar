@@ -24,6 +24,12 @@ public class GatewayConfiguration {
                 .route(p -> p.path("/api/events**")
                         .uri("lb://EVENT-SERVICE"))
 
+                // Event Register Service
+                .route(p -> p.path("/api/register/**")
+                        .uri("lb://REGISTER-SERVICE"))
+                .route(p -> p.path("/api/register**")
+                        .uri("lb://REGISTER-SERVICE"))
+
                 // Calendar Service
                 .route(p -> p.path("/api/calendars/**")
                         .uri("lb://CALENDAR-SERVICE"))

@@ -1,10 +1,10 @@
-package com.ironhack.searchservice;
+package com.ironhack.registerservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SearchServiceApplicationTests {
+class RegisterServiceApplicationTests {
 
     @Test
     void contextLoads() {
