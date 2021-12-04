@@ -1,5 +1,6 @@
-package com.ironhack.registerservice.controller;
+package com.ironhack.registerservice.controller.impl;
 
+import com.ironhack.registerservice.controller.dto.RegisterDTO;
 import com.ironhack.registerservice.dao.Register;
 import com.ironhack.registerservice.repository.RegisterRepository;
 import com.ironhack.registerservice.service.RegisterService;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
 @RequestMapping("/api/register")
 public class RegisterController {
@@ -22,7 +23,7 @@ public class RegisterController {
     }
 
     @GetMapping
-    public List<Register> getAllEvents() {
+    public List<Register> getAllRegistrations() {
         return registerRepository.findAll();
     }
 
@@ -39,11 +40,12 @@ public class RegisterController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Register register(@RequestParam(name = "eventId") Long eventId,
-                             @RequestParam(name = "username") String username) {
-        return registerService.register(eventId, username);
+                             @RequestParam(name = "username") String username,
+                             @RequestBody RegisterDTO registerDTO) {
+        return registerService.register(eventId, username, registerDTO);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/unregister")
     public void unregister(@RequestParam(name = "eventId") Long eventId,
                            @RequestParam(name = "username") String username) {
         registerService.unregister(eventId, username);

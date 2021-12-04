@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
 @RequestMapping("/api/calendars")
 public class CalendarController {
@@ -41,7 +41,20 @@ public class CalendarController {
 
     @PutMapping("/addevent")
     public Calendar addEventToCalendar(@RequestParam(name = "calendarId") Long calendarId,
-                                       @RequestParam(name = "eventId") Long eventId) {
-        return calendarService.addEventToCalendar(calendarId, eventId);
+                                       @RequestParam(name = "eventId") Long eventId,
+                                       @RequestBody CalendarDTO calendarDTO) {
+        return calendarService.addEventToCalendar(calendarId, eventId, calendarDTO);
+    }
+
+    @PutMapping("/removeevent")
+    public Calendar removeEventFromCalendar(@RequestParam(name = "calendarId") Long calendarId,
+                                            @RequestParam(name = "eventId") Long eventId,
+                                            @RequestBody CalendarDTO calendarDTO) {
+        return calendarService.removeEventFromCalendar(calendarId, eventId, calendarDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCalendar(@PathVariable Long id) {
+        calendarService.deleteCalendar(id);
     }
 }

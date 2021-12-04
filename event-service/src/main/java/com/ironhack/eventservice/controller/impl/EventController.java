@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
 @RequestMapping("/api/events")
 public class EventController {
@@ -41,7 +41,7 @@ public class EventController {
         return eventRepository.findByStartDate(startDate);
     }
 
-    @GetMapping("/isavaliable")
+    @GetMapping("/isavailable")
     public List<Event> getAllEventsByAvailability() {
         return eventService.getAllAvailableEvents();
     }
@@ -77,8 +77,8 @@ public class EventController {
     }
 
     @PutMapping("/register/{id}")
-    public void registerToEvent(@PathVariable Long id) {
-        eventService.registerToEvent(id);
+    public void registerToEvent(@PathVariable Long id, @RequestBody EventDTO eventDTO) {
+        eventService.registerToEvent(id, eventDTO);
     }
 
     @DeleteMapping("/delete/{id}")

@@ -4,7 +4,6 @@ import com.ironhack.eventservice.controller.dto.EventDTO;
 import com.ironhack.eventservice.dao.Event;
 import com.ironhack.eventservice.repository.EventRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +73,7 @@ public class EventService {
         return new EventDTO(convertEventToDTO(event));
     }
 
-    public void registerToEvent(Long id) {
+    public void registerToEvent(Long id, EventDTO eventDTO) {
         Event event = eventRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
         event.setAvailability(event.getAvailability() - 1);

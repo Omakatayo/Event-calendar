@@ -1,5 +1,6 @@
 package com.ironhack.registerservice.service;
 
+import com.ironhack.registerservice.controller.dto.RegisterDTO;
 import com.ironhack.registerservice.dao.Register;
 import com.ironhack.registerservice.repository.RegisterRepository;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class RegisterService {
         return  eventList;
     }
 
-    public Register register(Long eventId, String username) {
+    public Register register(Long eventId, String username, RegisterDTO registerDTO) {
         Register register = new Register(eventId, username);
         return registerRepository.save(register);
     }
@@ -43,8 +44,8 @@ public class RegisterService {
         try {
             Optional<Register> register = registerRepository.findByEventIdAndUsername(eventId, username);
             if(register.isPresent()) {
-                Optional<Register> registerDelete = registerRepository.findById(register.get().getId());
-                registerRepository.delete(registerDelete.get());
+//                Optional<Register> registerDelete = registerRepository.findById(register.get().getId());
+                registerRepository.delete(register.get());
             }
         } catch (Exception e){
             throw new NullPointerException("User " + username + " is not registered to event " + eventId + "!");
