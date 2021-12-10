@@ -1,1 +1,12 @@
-<p>user-calendar-view works!</p>
+<ul style="display: flex; flex-direction: column; gap: 20px">
+    <li *ngFor="let calendar of calendars | async">
+        Calendar id: {{calendar.id}}
+        <br>
+        Calendar name: {{calendar.name}}
+        <br>
+        Username: {{calendar.username}}
+        <br>
+        Event list: {{calendar.eventIdList}}
+    </li>
+</ul>
+

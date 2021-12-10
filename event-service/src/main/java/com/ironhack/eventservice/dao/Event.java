@@ -1,5 +1,6 @@
 package com.ironhack.eventservice.dao;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ironhack.eventservice.enums.Category;
 import com.ironhack.eventservice.utils.Address;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -33,11 +35,11 @@ public class Event {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @DateTimeFormat(pattern = "HH:MM")
-    private LocalTime startTime;
+    private LocalDateTime startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     @DateTimeFormat(pattern = "HH:MM")
-    private LocalTime endTime;
+    private LocalDateTime endTime;
 
     @Embedded
     private Address address;
@@ -50,11 +52,13 @@ public class Event {
     private Category category;
 
     private String organizer;
+    @Column(name = "image_URL")
+    private String imageURL = "https://www.iapco.org/app/plugins/events-calendar-pro/src/resources/images/tribe-event-placeholder-image.svg";
 
 
     public Event(
-            String eventName, String description, LocalDate startDate, LocalTime startTime,
-            LocalDate endDate, LocalTime endTime, Address address, int availability, int registered, BigDecimal price,
+            String eventName, String description, LocalDate startDate, LocalDateTime startTime,
+            LocalDate endDate, LocalDateTime endTime, Address address, int availability, int registered, BigDecimal price,
             Category category, String organizer) {
         this.eventName = eventName;
         this.description = description;
@@ -68,5 +72,6 @@ public class Event {
         this.price = price;
         this.category = category;
         this.organizer = organizer;
+        this.imageURL = "https://www.iapco.org/app/plugins/events-calendar-pro/src/resources/images/tribe-event-placeholder-image.svg";
     }
 }

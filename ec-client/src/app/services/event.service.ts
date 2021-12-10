@@ -16,8 +16,12 @@ export class EventService {
     return this.http.get(`${this.baseUrl}/all`);
   }
 
-  getEvent(eventId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${eventId}`);
+  getEventListOpen(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/allopen`);
+  }
+
+  getEvent(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
   getEventListByName(eventName: string): Observable<any> {

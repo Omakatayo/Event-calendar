@@ -1,8 +1,8 @@
 export class Calendar {
 
     constructor(
-        private _calendarId: number,
-        private _calendarName: string,
+        private _id: number,
+        private _name: string,
         private _username: string,
         private _eventIdList: Array<number>
     ){}
@@ -19,16 +19,16 @@ export class Calendar {
     public set username(value: string) {
         this._username = value;
     }
-    public get calendarName(): string {
-        return this._calendarName;
+    public get name(): string {
+        return this._name;
     }
-    public set calendarName(value: string) {
-        this._calendarName = value;
+    public set name(value: string) {
+        this._name = value;
     }
-    public get calendarId(): number {
-        return this._calendarId;
+    public get id(): number {
+        return this._id;
     }
-    public set calendarId(value: number) {
-        this._calendarId = value;
+    public set id(value: number) {
+        this._id = value;
     }
 }

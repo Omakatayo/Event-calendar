@@ -3,6 +3,7 @@ package com.ironhack.eventservice.repository;
 import com.ironhack.eventservice.dao.Event;
 import com.ironhack.eventservice.enums.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -20,4 +21,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByCategory(Category category);
 
     List<Event> findByOrganizer(String organizer);
+
+    @Query("SELECT e from Event e ORDER BY e.startDate")
+    List<Event> findAllOpenEventsSorted();
 }

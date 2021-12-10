@@ -11,7 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Embedded;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,12 +24,12 @@ public class EventDTO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-    @DateTimeFormat(pattern = "HH:MM")
-    private LocalTime startTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern = "HH:MM")
+    private LocalDateTime startTime;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     @DateTimeFormat(pattern = "HH:MM")
-    private LocalTime endTime;
+    private LocalDateTime endTime;
 
     @Embedded
     private Address address;
@@ -39,6 +39,7 @@ public class EventDTO {
     private BigDecimal price;
     private Category category;
     private String organizer;
+    private String imageURL;
 
 
     public EventDTO(EventDTO eventDTO) {
@@ -54,5 +55,8 @@ public class EventDTO {
         this.price = eventDTO.getPrice();
         this.category = eventDTO.getCategory();
         this.organizer = eventDTO.getOrganizer();
+        this.imageURL = eventDTO.getImageURL();
     }
+
+
 }

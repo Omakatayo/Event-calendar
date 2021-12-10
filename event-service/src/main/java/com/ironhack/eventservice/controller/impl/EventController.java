@@ -31,6 +31,11 @@ public class EventController {
         return eventRepository.findAll();
     }
 
+    @GetMapping("allopen")
+    public List<Event> getAllOpenEvents() {
+        return eventService.getAllOpenEvents();
+    }
+
     @GetMapping("/byname/{eventName}")
     public List<Event> getAllEventsByName(@PathVariable String eventName) {
         return eventRepository.findByEventName(eventName);
@@ -57,7 +62,7 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public Event getEventById(@PathVariable Long id) {
+    public Event getEventById(@PathVariable String id) {
         Event event = eventService.getEventById(id);
         if (event == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

@@ -15,8 +15,16 @@ export class EventItem {
         private _registered: number,
         private _price: number,
         private _category: string,
-        private _organizer: string
+        private _organizer: string,
+        private _imageURL: string
     ){}
+
+    public get imageURL(): string {
+        return this._imageURL;
+    }
+    public set imageURL(value: string) {
+        this._imageURL = value;
+    }
 
     public get organizer(): string {
         return this._organizer;

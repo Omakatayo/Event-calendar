@@ -39,10 +39,8 @@ public class RegisterController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Register register(@RequestParam(name = "eventId") Long eventId,
-                             @RequestParam(name = "username") String username,
-                             @RequestBody RegisterDTO registerDTO) {
-        return registerService.register(eventId, username, registerDTO);
+    public Register register(@RequestBody RegisterDTO registerDTO) {
+        return registerService.register(registerDTO);
     }
 
     @DeleteMapping("/unregister")

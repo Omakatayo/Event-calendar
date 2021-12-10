@@ -35,10 +35,10 @@ public class RegisterService {
         return  eventList;
     }
 
-    public Register register(Long eventId, String username, RegisterDTO registerDTO) {
-        Register register = new Register(eventId, username);
-        return registerRepository.save(register);
+    public Register register(RegisterDTO registerDTO) {
+        return convertDTOToRegister(registerDTO);
     }
+
 
     public void unregister(Long eventId, String username) {
         try {
@@ -50,5 +50,10 @@ public class RegisterService {
         } catch (Exception e){
             throw new NullPointerException("User " + username + " is not registered to event " + eventId + "!");
         }
+    }
+
+    private Register convertDTOToRegister(RegisterDTO registerDTO) {
+        Register register = new Register(registerDTO.getEventId(), registerDTO.getUsername());
+        return registerRepository.save(register);
     }
 }

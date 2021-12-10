@@ -5,6 +5,7 @@ import com.ironhack.eventservice.dao.Event;
 import com.ironhack.eventservice.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class EventService {
     }
 
 
-    public Event getEventById(Long id) {
-        return eventRepository.findById(id).orElseThrow(
+    public Event getEventById(String id) {
+        return eventRepository.findById(Long.parseLong(id)).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
     }
 
@@ -27,6 +28,16 @@ public class EventService {
         List<Event> eventList = new ArrayList<>();
         for (var event : eventRepository.findAll()) {
             if (event.getAvailability() > 0) {
+                eventList.add(event);
+            }
+        }
+        return eventList;
+    }
+
+    public List<Event> getAllOpenEvents() {
+        List<Event> eventList = new ArrayList<>();
+        for (var event : eventRepository.findAllOpenEventsSorted()) {
+            if (event.getStartDate().compareTo(LocalDate.now()) >= 0) {
                 eventList.add(event);
             }
         }
@@ -118,7 +129,9 @@ public class EventService {
                 event.getRegistered(),
                 event.getPrice(),
                 event.getCategory(),
-                event.getOrganizer()
+                event.getOrganizer(),
+                event.getImageURL()
         );
     }
+
 }

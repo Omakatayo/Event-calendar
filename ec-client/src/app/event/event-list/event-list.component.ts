@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EventItem } from 'src/app/models/event.model';
@@ -11,7 +11,8 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class EventListComponent implements OnInit {
 
-  events: Observable<EventItem[]> | undefined;
+  events!: Observable<EventItem[]>;
+  today: Date = new Date();
 
   constructor(private router: Router, private eventService: EventService) { }
 
@@ -20,7 +21,12 @@ export class EventListComponent implements OnInit {
   }
 
   reloadData() {
-    this.events = this.eventService.getEventList();
+    this.events = this.eventService.getEventListOpen();
+  }
+
+  eventDetails(id: number) {
+    // localStorage.setItem('evantId', id);
+    this.router.navigate(['/event-details', id]);
   }
 
 }

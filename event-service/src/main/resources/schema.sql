@@ -1,10 +1,10 @@
 DROP TABLE if exists event;
 
 
-CREATE TABLE `event` (
+CREATE TABLE if not exists `event` (
     `id` BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `event_name` VARCHAR(255),
-    `description` VARCHAR(255),
+    `description` VARCHAR(500),
     `start_date` DATE,
     `start_time` TIME,
     `end_date` DATE,
@@ -17,6 +17,7 @@ CREATE TABLE `event` (
     `registered` SMALLINT,
     `price` DECIMAL,
     `category` VARCHAR(255),
-    `organizer` VARCHAR(255)
+    `organizer` VARCHAR(255),
+    `image_URL` VARCHAR(500)
 );
 

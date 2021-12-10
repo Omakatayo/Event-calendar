@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { Okta } from './shared/okta/okta.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,11 +31,11 @@ import { EventUserListComponent } from './event/event-user-list/event-user-list.
     CreateUserComponent,
     UpdateUserComponent,
     UserDetailsComponent,
-    UserListComponent,
+    // UserListComponent,
     CreateEventComponent,
     UpdateEventComponent,
     EventDetailsComponent,
-    EventListComponent,
+    // EventListComponent,
     CalendarViewComponent,
     UserCalendarViewComponent,
     EventUserListComponent
@@ -46,7 +47,7 @@ import { EventUserListComponent } from './event/event-user-list/event-user-list.
     HttpClientModule,
     AuthRoutingModule
   ],
-  providers: [],
+  providers: [Okta],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

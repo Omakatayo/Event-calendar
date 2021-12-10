@@ -1,1 +1,13 @@
-<p>header works!</p>
+<header>
+<nav class="nav">
+    <ul class="nav-list">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">EventCalendarApp</a></li>
+        <li><a *ngIf="(authService.authState$ | async)?.isAuthenticated" [routerLink]="['/user-details', username]" routerLinkActive="active">My account</a></li>
+        <li><a *ngIf="(authService.authState$ | async)?.isAuthenticated" [routerLink]="['/my-calendars', username]" routerLinkActive="active">My calendars</a></li>
+        <li>
+            <a *ngIf="!(authService.authState$ | async)?.isAuthenticated" (click)="oktaAuth.signInWithRedirect()">Login</a>
+            <a *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="oktaAuth.signOut()">Logout</a>
+        </li>
+    </ul>
+</nav>
+</header>
