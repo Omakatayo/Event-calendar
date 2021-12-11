@@ -87,10 +87,16 @@ public class EventService {
     public void registerToEvent(Long id) {
         Event event = eventRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
-        System.out.println("Before: " + event.getAvailability());
         event.setAvailability(event.getAvailability() - 1);
-        System.out.println("After: " + event.getAvailability());
         event.setRegistered(event.getRegistered() + 1);
+        eventRepository.save(event);
+    }
+
+    public void unregisterFromEvent(Long id) {
+        Event event = eventRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("Event with id " + id + " not found!"));
+        event.setAvailability(event.getAvailability() + 1);
+        event.setRegistered(event.getRegistered() - 1);
         eventRepository.save(event);
     }
 

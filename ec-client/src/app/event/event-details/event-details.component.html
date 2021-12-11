@@ -14,3 +14,4 @@
     </button>
 </div>
 <button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="registerToEvent()">Register to event</button>
+<button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="unregisterFromEvent()">Unregister from event</button>

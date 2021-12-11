@@ -24,11 +24,11 @@ export class RegisterService {
     return this.http.get(`${this.baseUrl}/byusername/${username}`);
   }
 
-  async register(Event: any): Promise<any> {
-    return this.http.post<any>(`${this.baseUrl}`, Event).toPromise();
+  async register(value: any): Promise<any> {
+    return this.http.post<any>(`${this.baseUrl}`, value).toPromise();
   }
 
-  unregister(eventId: number, username: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/unregister?eventId=eventId&username=username`, { responseType: 'text' });
+  async unregister(eventId: number, username: string): Promise<any> {
+    return this.http.delete<any>(`${this.baseUrl}?eventId=${eventId}&username=${username}`).toPromise();
   }
 }

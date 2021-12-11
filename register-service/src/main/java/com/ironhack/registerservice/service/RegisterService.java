@@ -3,6 +3,7 @@ package com.ironhack.registerservice.service;
 import com.ironhack.registerservice.controller.dto.RegisterDTO;
 import com.ironhack.registerservice.dao.Register;
 import com.ironhack.registerservice.repository.RegisterRepository;
+import com.thoughtworks.xstream.mapper.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,6 +52,12 @@ public class RegisterService {
             throw new NullPointerException("User " + username + " is not registered to event " + eventId + "!");
         }
     }
+
+//    public void unregister(Long eventId, String username) {
+//        Register registered = registerRepository.findById(register.getId()).orElseThrow(
+//                () -> new NullPointerException("Registration with not found!"));
+//        registerRepository.delete(registered);
+//    }
 
     private Register convertDTOToRegister(RegisterDTO registerDTO) {
         Register register = new Register(registerDTO.getEventId(), registerDTO.getUsername());

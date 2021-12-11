@@ -20,7 +20,7 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class EventDetailsComponent implements OnInit {
 
-  id!: number;
+  eventId!: number;
   event!: EventItem;
   calendar!: any;
   calendarDTO!: any;
@@ -36,17 +36,17 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log("Route", this.route.snapshot)  // for testing
-    this.id = this.route.snapshot.params['eventId'];
+    this.eventId = this.route.snapshot.params['eventId'];
     this.username = localStorage.getItem('username')!;
 
-    this.eventService.getEvent(this.id)
+    this.eventService.getEvent(this.eventId)
       .subscribe(data => {
         console.log(data)
         this.event = data;
       }, error => console.log(error))
 
       this.register = {
-        eventId: this.id,
+        eventId: this.eventId,
         username: this.username
       }
   }
@@ -58,16 +58,22 @@ export class EventDetailsComponent implements OnInit {
   }
 
    async addToCalendar(calendarId: number) {
-    let rest = await this.calendarService.addEventToCalendar(calendarId, this.id, {});
+    let rest = await this.calendarService.addEventToCalendar(calendarId, this.eventId, {});
   }
 
   async registerToEvent():Promise<void> {   
     
     let response = await this.registerService.register(this.register)
-    console.log("Response " , response);
 
-    await this.eventService.registerToEvent(this.id, this.event);
-    console.log("Check ")
+    await this.eventService.registerToEvent(this.eventId, this.event);
+
+    this.ngOnInit();
+  }
+
+  async unregisterFromEvent():Promise<void> {
+    await this.registerService.unregister(this.eventId, this.username);
+
+    await this.eventService.unregisterFromEvent(this.eventId, this.event);
 
     this.ngOnInit();
   }

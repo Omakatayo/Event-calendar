@@ -83,8 +83,12 @@ public class EventController {
 
     @PostMapping("/register/{id}")
     public void registerToEvent(@PathVariable Long id) {
-        System.out.println("Method is called");
         eventService.registerToEvent(id);
+    }
+
+    @PostMapping("/unregister/{id}")
+    public void unregisterFromEvent(@PathVariable Long id) {
+        eventService.unregisterFromEvent(id);
     }
 
     @DeleteMapping("/delete/{id}")

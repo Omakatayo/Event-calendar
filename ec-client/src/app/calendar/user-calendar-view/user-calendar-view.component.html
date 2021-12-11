@@ -6,7 +6,13 @@
         <br>
         Username: {{calendar.username}}
         <br>
-        Event list: {{calendar.eventId}}
+        Event list: 
+        <div *ngFor="let event of calendar.eventId">
+            {{event}}
+        </div>
+        <!-- {{calendar.eventId[0]}} -->
+        <!-- <div *ngFor="let item of arr(calendar.eventId) | async">
+        </div> -->
     </li>
 </ul>
 

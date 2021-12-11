@@ -43,9 +43,16 @@ public class RegisterController {
         return registerService.register(registerDTO);
     }
 
-    @DeleteMapping("/unregister")
+//    @DeleteMapping("/unregister")
+//    public void unregister(@RequestParam(name = "eventId") Long eventId,
+//                           @RequestParam(name = "username") String username) {
+//        registerService.unregister(eventId, username);
+//    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
     public void unregister(@RequestParam(name = "eventId") Long eventId,
                            @RequestParam(name = "username") String username) {
         registerService.unregister(eventId, username);
-    }
+}
 }
