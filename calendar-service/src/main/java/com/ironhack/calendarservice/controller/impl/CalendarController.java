@@ -39,10 +39,10 @@ public class CalendarController {
         return calendarService.addNewCalendar(calendarDTO);
     }
 
-    @PutMapping("/addevent")
-    public Calendar addEventToCalendar(@RequestParam(name = "calendarId") Long calendarId,
-                                       @RequestParam(name = "eventId") Long eventId,
-                                       @RequestBody CalendarDTO calendarDTO) {
+    @PostMapping("/addevent")
+    public CalendarDTO addEventToCalendar(@RequestParam(name = "calendarId") Long calendarId,
+                                          @RequestParam(name = "eventId") Long eventId,
+                                          @RequestBody CalendarDTO calendarDTO) {
         return calendarService.addEventToCalendar(calendarId, eventId, calendarDTO);
     }
 

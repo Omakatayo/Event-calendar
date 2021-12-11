@@ -20,23 +20,24 @@ public class CalendarService {
     }
 
     public Calendar addNewCalendar(CalendarDTO calendarDTO) {
-        return getConvertDTOToCalendar(calendarDTO);
+        return convertDTOToCalendar(calendarDTO);
     }
 
-    public Calendar addEventToCalendar(Long calendarId, Long eventId, CalendarDTO calendarDTO) {
+    public CalendarDTO addEventToCalendar(Long calendarId, Long eventId, CalendarDTO calendarDTO) {
         Calendar calendar = calendarRepository.findById(calendarId).orElseThrow(
                 () -> new NullPointerException("Calendar with id " + calendarId + " not found!"));
         if (eventId != null) {
-            calendar.getEventIdList().add(eventId);
+            calendar.getEventId().add(eventId);
         }
-        return calendarRepository.save(calendar);
+        calendarRepository.save(calendar);
+        return convertCalendarToDTO(calendar);
     }
 
     public Calendar removeEventFromCalendar(Long calendarId, Long eventId, CalendarDTO calendarDTO) {
         Calendar calendar = calendarRepository.findById(calendarId).orElseThrow(
                 () -> new NullPointerException("Calendar with id " + calendarId + " not found!"));
         if (eventId != null) {
-            calendar.getEventIdList().remove(eventId);
+            calendar.getEventId().remove(eventId);
         }
         return calendarRepository.save(calendar);
     }
@@ -47,11 +48,18 @@ public class CalendarService {
         calendarRepository.delete(calendar);
     }
 
-    private Calendar getConvertDTOToCalendar(CalendarDTO calendarDTO) {
+    private Calendar convertDTOToCalendar(CalendarDTO calendarDTO) {
         Calendar calendar =  new Calendar(
                 calendarDTO.getName(),
                 calendarDTO.getUsername()
         );
         return calendarRepository.save(calendar);
+    }
+
+    private CalendarDTO convertCalendarToDTO(Calendar calendar) {
+        return new CalendarDTO(
+                calendar.getName(),
+                calendar.getUsername(),
+                calendar.getEventId());
     }
 }

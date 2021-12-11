@@ -52,8 +52,13 @@ export class EventService {
     return this.http.put(`${this.baseUrl}/update/${eventId}`, value);
   }
 
-  registerToEvent(eventId: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/register/${eventId}`, value);
+  // registerToEvent(eventId: number, value: any): Observable<Object> {
+  //   return this.http.put(`${this.baseUrl}/register/${eventId}`, value);
+  // }
+
+  async registerToEvent(eventId: number, value: any): Promise<any> {
+    console.log("Register to event ", eventId)
+    return this.http.post<any>(`${this.baseUrl}/register/${eventId}`, value).toPromise();
   }
 
   deleteEvent(eventId: number): Observable<any> {

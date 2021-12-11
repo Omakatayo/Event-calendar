@@ -1,4 +1,16 @@
 <div *ngIf="event">
-    {{event.id}}
-    {{event.eventName}}
+    Event id: {{event.id}}<br>
+    Event name: {{event.eventName}}<br>
+    Event description: {{event.description}}<br>
+    Start date: {{event.startDate}}<br>
+    End date: {{event.endDate}}<br>
+    Availability: {{event.availability}}<br>
+    Registerd: {{event.registered}}<br>
 </div>
+<button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="displayCalendarList()">Add to my calendar</button>
+<div id="calendar-list">
+    <button *ngFor="let calendar of calendars | async" (click)="addToCalendar(calendar.id)">
+        {{calendar.name}}
+    </button>
+</div>
+<button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="registerToEvent()">Register to event</button>

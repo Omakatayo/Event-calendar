@@ -9,9 +9,17 @@ import { OktaAuth } from '@okta/okta-auth-js';
 })
 export class HomeComponent implements OnInit {
 
+  username!: string;
+
   constructor(public oktaAuth: OktaAuth, public authService: OktaAuthStateService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if(await this.oktaAuth.isAuthenticated()) {
+      this.username = (await this.oktaAuth.getUser()).given_name!;
+      if(localStorage.getItem('username') != 'null') {
+        localStorage.setItem('username', this.username);
+      }
+    }
   }
 }

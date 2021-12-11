@@ -12,18 +12,23 @@ export class HeaderComponent implements OnInit {
 
   username: string = '';
 
-  constructor(public oktaAuth: OktaAuth, public authService: OktaAuthStateService, private router: Router) { }
+  constructor(public oktaAuth: OktaAuth, public authService: OktaAuthStateService, private router: Router) {}
 
-  async ngOnInit() {
-    if (await this.oktaAuth.isAuthenticated()) {
-      this.username = (await this.oktaAuth.getUser()).given_name!;
-      // console.log(this.username);
-    }
+  ngOnInit() {
   }
 
+  logout() {
+    localStorage.clear();
+    this.oktaAuth.signOut()
+  }
 
-  async userDetails() {
+  userDetails() {
+    this.username = localStorage.getItem('username')!;
     this.router.navigate(['user-details', this.username])
   }
 
+  myCalendars() {
+    this.username = localStorage.getItem('username')!;
+    this.router.navigate(['my-calendars', this.username])
+  }
 }

@@ -25,7 +25,7 @@ public class Calendar {
 
     @ElementCollection
     @CollectionTable(name = "calendar_events", joinColumns = @JoinColumn(name = "calendar_id"))
-    private Set<Long> eventIdList = new HashSet<>();
+    private Set<Long> eventId = new HashSet<>();
 
     public Calendar(String name, String username) {
         this.name = name;

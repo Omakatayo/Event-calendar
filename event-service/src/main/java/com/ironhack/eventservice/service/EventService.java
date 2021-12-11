@@ -84,10 +84,12 @@ public class EventService {
         return new EventDTO(convertEventToDTO(event));
     }
 
-    public void registerToEvent(Long id, EventDTO eventDTO) {
+    public void registerToEvent(Long id) {
         Event event = eventRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
+        System.out.println("Before: " + event.getAvailability());
         event.setAvailability(event.getAvailability() - 1);
+        System.out.println("After: " + event.getAvailability());
         event.setRegistered(event.getRegistered() + 1);
         eventRepository.save(event);
     }

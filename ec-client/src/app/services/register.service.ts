@@ -24,8 +24,8 @@ export class RegisterService {
     return this.http.get(`${this.baseUrl}/byusername/${username}`);
   }
 
-  register(Event: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, Event);
+  async register(Event: any): Promise<any> {
+    return this.http.post<any>(`${this.baseUrl}`, Event).toPromise();
   }
 
   unregister(eventId: number, username: string): Observable<any> {

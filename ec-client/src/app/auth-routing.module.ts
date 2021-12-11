@@ -12,6 +12,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import { UserDetailsComponent } from './user/user-details/user-details.component';
 import { UserCalendarViewComponent } from './calendar/user-calendar-view/user-calendar-view.component';
+import { HeaderComponent } from './header/header.component';
 
 const oktaConfig = {
   issuer: 'https://dev-46503723.okta.com/oauth2/default',

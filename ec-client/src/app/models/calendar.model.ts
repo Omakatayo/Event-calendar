@@ -4,14 +4,14 @@ export class Calendar {
         private _id: number,
         private _name: string,
         private _username: string,
-        private _eventIdList: Array<number>
+        private _eventId: Array<number>
     ){}
 
-    public get eventIdList(): Array<number> {
-        return this._eventIdList;
+    public get eventId(): Array<number> {
+        return this._eventId;
     }
-    public set eventIdList(value: Array<number>) {
-        this._eventIdList = value;
+    public set eventId(value: Array<number>) {
+        this._eventId = value;
     }
     public get username(): string {
         return this._username;

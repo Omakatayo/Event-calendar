@@ -24,12 +24,17 @@ export class CalendarService {
     return this.http.post(`${this.baseUrl}/new`, Calendar);
   }
 
-  addEventToCalendar(calendarId: number, eventId: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/addevent?calendarId=calendarId&eventId=eventId`, value);
+  // addEventToCalendar(calendarId: number, eventId: number, value: any): Observable<Object> {
+  //   return this.http.put(`${this.baseUrl}/addevent?calendarId=calendarId&eventId=eventId`, value);
+  // }
+
+  async addEventToCalendar(calendarId: number, eventId: number, value: any): Promise<any> {
+    console.log("Calendar id: ", calendarId, " Event id ", eventId);
+    return this.http.post<any>(`${this.baseUrl}/addevent?calendarId=${calendarId}&eventId=${eventId}`, value).toPromise();
   }
 
   removeEventFromCalendar(calendarId: number, eventId: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/removeevent?calendarId=calendarId&eventId=eventId`, value);
+    return this.http.put(`${this.baseUrl}/removeevent?calendarId=${calendarId}&eventId=${eventId}`, value);
   }
 
   deleteCalendar(calendarId: number): Observable<any> {

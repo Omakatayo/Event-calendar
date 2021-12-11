@@ -81,9 +81,10 @@ public class EventController {
         return eventService.updateEvent(id, eventDTO);
     }
 
-    @PutMapping("/register/{id}")
-    public void registerToEvent(@PathVariable Long id, @RequestBody EventDTO eventDTO) {
-        eventService.registerToEvent(id, eventDTO);
+    @PostMapping("/register/{id}")
+    public void registerToEvent(@PathVariable Long id) {
+        System.out.println("Method is called");
+        eventService.registerToEvent(id);
     }
 
     @DeleteMapping("/delete/{id}")
