@@ -31,7 +31,7 @@ public class EventController {
         return eventRepository.findAll();
     }
 
-    @GetMapping("allopen")
+    @GetMapping("/allopen")
     public List<Event> getAllOpenEvents() {
         return eventService.getAllOpenEvents();
     }
@@ -59,6 +59,11 @@ public class EventController {
     @GetMapping("/byorganizer/{organizer}")
     public List<Event> getAllEventsByAvailability(@PathVariable String organizer) {
         return eventRepository.findByOrganizer(organizer);
+    }
+
+    @GetMapping("/namebyid/{id}")
+    public String getEventNameById(@PathVariable Long id) {
+        return eventService.getEventNameById(id);
     }
 
     @GetMapping("/{id}")

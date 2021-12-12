@@ -16,8 +16,8 @@ export class CalendarService {
     return this.http.get(`${this.baseUrl}/${calendarId}`);
   }
 
-  getCalendarListByUsername(username: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/byusername/${username}`);
+  async getCalendarListByUsername(username: string): Promise<any> {
+    return this.http.get<any>(`${this.baseUrl}/byusername/${username}`).toPromise();
   }
 
   createCalendar(Calendar: Object): Observable<Object> {

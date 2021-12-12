@@ -21,6 +21,7 @@ export class EventService {
   }
 
   getEvent(id: number): Observable<any> {
+    console.log("Method call")
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
@@ -42,6 +43,10 @@ export class EventService {
 
   getEventListByOrganizer(organizer: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/byorganizer/${organizer}`);
+  }
+
+  getEventNameById(eventId: number): Promise<any> {
+    return this.http.get(`${this.baseUrl}/namebyid/${eventId}`, {responseType: 'text'}).toPromise();
   }
 
   createEvent(Event: Object): Observable<Object> {

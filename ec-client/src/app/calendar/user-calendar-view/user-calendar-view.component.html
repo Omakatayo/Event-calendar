@@ -1,5 +1,5 @@
 <ul style="display: flex; flex-direction: column; gap: 20px">
-    <li *ngFor="let calendar of calendars | async">
+    <li *ngFor="let calendar of calendars">
         Calendar id: {{calendar.id}}
         <br>
         Calendar name: {{calendar.name}}
@@ -7,12 +7,14 @@
         Username: {{calendar.username}}
         <br>
         Event list: 
-        <div *ngFor="let event of calendar.eventId">
-            {{event}}
+        <div *ngFor="let event of calendar.eventId" (click)="getEventNameById(event)">
+            <!-- {{ getEventNameById(event) }} -->
+            <!-- <span *ngIf="event">{{getEventNameById(event)}}</span> -->
+            <!-- {{ event }} -->
+            <!-- {{ eventName }} -->
+            {{ arr3[event] }}
+
         </div>
-        <!-- {{calendar.eventId[0]}} -->
-        <!-- <div *ngFor="let item of arr(calendar.eventId) | async">
-        </div> -->
     </li>
 </ul>
 

@@ -44,6 +44,11 @@ public class EventService {
         return eventList;
     }
 
+    public String getEventNameById(Long id) {
+        Event event = eventRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("Event with id " + id + " not found!"));
+        return event.getEventName();
+    }
 
     public Event addNewEvent(EventDTO eventDTO) {
         return convertDTOToEvent(eventDTO);

@@ -13,14 +13,12 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class UserCalendarViewComponent implements OnInit {
 
-  id!: number;
-  cal!: Calendar;
-  calendars!: Observable<Calendar[]>
+  calendars!: Calendar[];
   username!: string;
-  event!: EventItem;
-  events!: Observable<EventItem[]>
   arr = Array<any>();
   arr2 = Array<any>();
+  arr3 = Array<any>();
+  eventName!: any;
 
   constructor(private calendarService: CalendarService, private router: Router, 
               private route: ActivatedRoute, private eventService: EventService) {
@@ -32,11 +30,45 @@ export class UserCalendarViewComponent implements OnInit {
 
   async reloadData() {
     this.username = this.route.snapshot.params['username'];
-    this.calendars = this.calendarService.getCalendarListByUsername(this.username);
+    this.calendars = await this.calendarService.getCalendarListByUsername(this.username);
+
+    this.calendars.forEach( (element) => {
+      this.arr.push(element.eventId);
+    })
+   
+      JSON.stringify(this.arr, (key, value) => {
+        if (key && !isNaN(value)) this.arr2.push(value);
+        return value;
+      });
+      this.arr2 = [...new Set(this.arr2)]
+      console.log(this.arr2)
+
+      this.arr2.forEach( async (key, value) => {
+        var obj = [];
+        
+        obj[value] = await this.getEventNameById(key);
+        // this.arr3.push(obj)
+      })
+      // console.log("Array 3: ", this.arr3);
   }
 
-  async getEventById(id: number) {
-    this.eventService.getEvent(id);
-  }
+  async getEventNameById(id: any): Promise<void> {
+    var obj:obj = {
+      id: 0,
+      name: ''
+    };
+    this.eventName = await this.eventService.getEventNameById(id);
+    obj.id = id;
+    obj.name = this.eventName;
+    // this.arr3.push(obj);
+    this.arr3[id] = this.eventName
+    console.log(this.arr3);    
+    }
 
 }
+
+interface obj {
+  id : number
+ name:string
+ }
+ 

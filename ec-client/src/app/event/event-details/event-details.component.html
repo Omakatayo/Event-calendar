@@ -9,7 +9,7 @@
 </div>
 <button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="displayCalendarList()">Add to my calendar</button>
 <div id="calendar-list">
-    <button *ngFor="let calendar of calendars | async" (click)="addToCalendar(calendar.id)">
+    <button *ngFor="let calendar of calendars" (click)="addToCalendar(calendar.id)">
         {{calendar.name}}
     </button>
 </div>

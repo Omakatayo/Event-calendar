@@ -25,7 +25,7 @@ export class EventDetailsComponent implements OnInit {
   calendar!: any;
   calendarDTO!: any;
   eventIdList!: number[];
-  calendars!: Observable<Calendar[]>;
+  calendars!: Calendar[];
   username!: string;
   register!: RegisterItem;
 
@@ -51,8 +51,8 @@ export class EventDetailsComponent implements OnInit {
       }
   }
 
-  displayCalendarList() {
-    this.calendars = this.calendarService.getCalendarListByUsername(this.username);
+  async displayCalendarList():Promise<void> {
+    this.calendars = await this.calendarService.getCalendarListByUsername(this.username);
     console.log(this.calendars);
     document.getElementById("calendar-list")!.style.display = "block";
   }
