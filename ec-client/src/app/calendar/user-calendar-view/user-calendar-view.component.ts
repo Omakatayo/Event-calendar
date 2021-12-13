@@ -15,9 +15,9 @@ export class UserCalendarViewComponent implements OnInit {
 
   calendars!: Calendar[];
   username!: string;
-  arr = Array<any>();
-  arr2 = Array<any>();
-  arr3 = Array<any>();
+  tempArray = Array<any>();
+  tempArray2 = Array<any>();
+  idNameArray = Array<any>();
   eventName!: any;
 
   constructor(private calendarService: CalendarService, private router: Router, 
@@ -33,23 +33,19 @@ export class UserCalendarViewComponent implements OnInit {
     this.calendars = await this.calendarService.getCalendarListByUsername(this.username);
 
     this.calendars.forEach( (element) => {
-      this.arr.push(element.eventId);
+      this.tempArray.push(element.eventId);
     })
    
-      JSON.stringify(this.arr, (key, value) => {
-        if (key && !isNaN(value)) this.arr2.push(value);
-        return value;
-      });
-      this.arr2 = [...new Set(this.arr2)]
-      console.log(this.arr2)
+    JSON.stringify(this.tempArray, (key, value) => {
+      if (key && !isNaN(value)) this.tempArray2.push(value);
+      return value;
+    });
+    this.tempArray2 = [...new Set(this.tempArray2)]
 
-      this.arr2.forEach( async (key, value) => {
-        var obj = [];
-        
-        obj[value] = await this.getEventNameById(key);
-        // this.arr3.push(obj)
-      })
-      // console.log("Array 3: ", this.arr3);
+    this.tempArray2.forEach( async (key, value) => {
+      var obj = [];   
+      obj[value] = await this.getEventNameById(key);
+    })
   }
 
   async getEventNameById(id: any): Promise<void> {
@@ -60,9 +56,7 @@ export class UserCalendarViewComponent implements OnInit {
     this.eventName = await this.eventService.getEventNameById(id);
     obj.id = id;
     obj.name = this.eventName;
-    // this.arr3.push(obj);
-    this.arr3[id] = this.eventName
-    console.log(this.arr3);    
+    this.idNameArray[id] = this.eventName  
     }
 
 }

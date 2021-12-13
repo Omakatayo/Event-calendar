@@ -28,16 +28,20 @@ export class EventDetailsComponent implements OnInit {
   calendars!: Calendar[];
   username!: string;
   register!: RegisterItem;
+  users!: string[];
+  compare: boolean = false;
 
   constructor(private eventService: EventService, private route: ActivatedRoute, 
               private calendarService: CalendarService, private registerService: RegisterService,
               public oktaAuth: OktaAuth, public authService: OktaAuthStateService) {
   }
 
-  ngOnInit(): void {
-    // console.log("Route", this.route.snapshot)  // for testing
+  async ngOnInit(): Promise<void> {
     this.eventId = this.route.snapshot.params['eventId'];
+    console.log(this.eventId)
     this.username = localStorage.getItem('username')!;
+    this.users = await this.registerService.getUsersRegisteredToEvent(this.eventId);
+    this.compare = Boolean(Number(this.users.indexOf(this.username)));
 
     this.eventService.getEvent(this.eventId)
       .subscribe(data => {
@@ -49,24 +53,22 @@ export class EventDetailsComponent implements OnInit {
         eventId: this.eventId,
         username: this.username
       }
+
+    // this.isRegistered(2);
   }
 
   async displayCalendarList():Promise<void> {
     this.calendars = await this.calendarService.getCalendarListByUsername(this.username);
-    console.log(this.calendars);
     document.getElementById("calendar-list")!.style.display = "block";
   }
 
    async addToCalendar(calendarId: number) {
-    let rest = await this.calendarService.addEventToCalendar(calendarId, this.eventId, {});
+    await this.calendarService.addEventToCalendar(calendarId, this.eventId, {});
   }
 
   async registerToEvent():Promise<void> {   
-    
-    let response = await this.registerService.register(this.register)
-
+    await this.registerService.register(this.register)
     await this.eventService.registerToEvent(this.eventId, this.event);
-
     this.ngOnInit();
   }
 
@@ -77,5 +79,12 @@ export class EventDetailsComponent implements OnInit {
 
     this.ngOnInit();
   }
+
+  // async isRegistered(id: any):Promise<any> {
+  //   let tempEvent = await this.registerService.getUsersRegisteredToEvent(id);
+  //   if(tempEvent.indexOf(this.username)) {
+  //     console.log(this.username);
+  //   }
+  // }
 
 }

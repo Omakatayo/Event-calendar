@@ -16,8 +16,8 @@ export class RegisterService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  getUsersRegisteredToEvent(eventId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/byevent/${eventId}`);
+  async getUsersRegisteredToEvent(eventId: number): Promise<any> {
+    return this.http.get<any>(`${this.baseUrl}/byevent/${eventId}`).toPromise();
   }
 
   getRegisteredByUser(username: string): Observable<any> {

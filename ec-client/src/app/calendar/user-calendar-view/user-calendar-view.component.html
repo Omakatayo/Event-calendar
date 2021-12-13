@@ -7,13 +7,8 @@
         Username: {{calendar.username}}
         <br>
         Event list: 
-        <div *ngFor="let event of calendar.eventId" (click)="getEventNameById(event)">
-            <!-- {{ getEventNameById(event) }} -->
-            <!-- <span *ngIf="event">{{getEventNameById(event)}}</span> -->
-            <!-- {{ event }} -->
-            <!-- {{ eventName }} -->
-            {{ arr3[event] }}
-
+        <div *ngFor="let event of calendar.eventId" [routerLink]="['/event-details', event]">
+            {{ idNameArray[event] }}
         </div>
     </li>
 </ul>

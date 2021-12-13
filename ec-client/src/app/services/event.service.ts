@@ -21,7 +21,6 @@ export class EventService {
   }
 
   getEvent(id: number): Observable<any> {
-    console.log("Method call")
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
