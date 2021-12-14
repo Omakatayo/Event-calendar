@@ -21,6 +21,10 @@ import { EventListComponent } from './event/event-list/event-list.component';
 import { CalendarViewComponent } from './calendar/calendar-view/calendar-view.component';
 import { UserCalendarViewComponent } from './calendar/user-calendar-view/user-calendar-view.component';
 import { EventUserListComponent } from './event/event-user-list/event-user-list.component';
+import { MyAccountComponent } from './user/my-account/my-account.component';
+import { OrganizerDetailsComponent } from './user/organizer-details/organizer-details.component';
+import { AdminDetailsComponent } from './user/admin-details/admin-details.component';
+import { UserCalendarDetailsComponent } from './calendar/user-calendar-details/user-calendar-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { EventUserListComponent } from './event/event-user-list/event-user-list.
     // EventListComponent,
     CalendarViewComponent,
     UserCalendarViewComponent,
-    EventUserListComponent
+    EventUserListComponent,
+    MyAccountComponent,
+    OrganizerDetailsComponent,
+    AdminDetailsComponent,
+    UserCalendarDetailsComponent
   ],
   imports: [
     BrowserModule,

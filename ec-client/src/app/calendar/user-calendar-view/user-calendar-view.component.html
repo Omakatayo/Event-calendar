@@ -1,4 +1,4 @@
-<ul style="display: flex; flex-direction: column; gap: 20px">
+<!-- <ul style="display: flex; flex-direction: column; gap: 20px">
     <li *ngFor="let calendar of calendars">
         Calendar id: {{calendar.id}}
         <br>
@@ -7,9 +7,38 @@
         Username: {{calendar.username}}
         <br>
         Event list: 
-        <div *ngFor="let event of calendar.eventId" [routerLink]="['/event-details', event]">
-            {{ idNameArray[event] }}
-        </div>
+        <div *ngFor="let event of calendar.eventId" >
+            <span [routerLink]="['/event-details', event]">{{ idNameArray[event] }}</span>
+            <span class="material-icons" (click)="deleteEvent(calendar.id, event)">delete_forever</span>
+        </div>      
     </li>
-</ul>
-
+</ul> -->
+<div class="calendar-container">
+    <section class="tabs-wrapper">
+        <div class="tabs-container">
+            <div class="tabs-block">
+                <div class="tabs">
+                    <div *ngFor="let calendar of calendars">
+                        <input type="radio" name="tabs" id="{{calendar.id}}" />
+                        <label for="{{calendar.id}}"><span class="material-icons">date_range</span> {{calendar.name}}</label>
+                        <div class="tab">
+                            <!-- <h2>{{calendar.name}}</h2> -->
+                            <!-- <app-admin-details ></app-admin-details> -->
+                            Calendar id: {{calendar.id}}
+                            <br>
+                            Calendar name: {{calendar.name}}
+                            <br>
+                            Username: {{calendar.username}}
+                            <br>
+                            Event list: 
+                            <div *ngFor="let event of calendar.eventId" >
+                                <span [routerLink]="['/event-details', event]">{{ idNameArray[event] }}</span>
+                                <span class="material-icons" (click)="deleteEvent(calendar.id, event)">delete_forever</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

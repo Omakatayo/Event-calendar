@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -10,8 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-  user: User = new User(0, '', '', '', '', '');
-  username!: string;
+  @Input() user!: User;
+  @Input() username!: string;
 
   constructor(private userService: UserService, 
               private router: Router, 
@@ -19,13 +19,13 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit() {
  
-    this.username = this.route.snapshot.params['username'];
+    // this.username = this.route.snapshot.params['username'];
 
-    this.userService.getUser(this.username)
-      .subscribe(data => {
-        console.log(data)
-        this.user = data;
-      }, error => console.log(error))
+    // this.userService.getUser(this.username)
+    //   .subscribe(data => {
+    //     console.log(data)
+    //     this.user = data;
+    //   }, error => console.log(error))
   }
 
 }

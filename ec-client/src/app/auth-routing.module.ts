@@ -13,6 +13,9 @@ import { EventListComponent } from './event/event-list/event-list.component';
 import { UserDetailsComponent } from './user/user-details/user-details.component';
 import { UserCalendarViewComponent } from './calendar/user-calendar-view/user-calendar-view.component';
 import { HeaderComponent } from './header/header.component';
+import { MyAccountComponent } from './user/my-account/my-account.component';
+import { OrganizerDetailsComponent } from './user/organizer-details/organizer-details.component';
+import { AdminDetailsComponent } from './user/admin-details/admin-details.component';
 
 const oktaConfig = {
   issuer: 'https://dev-46503723.okta.com/oauth2/default',
@@ -34,14 +37,36 @@ const routes: Routes = [
     component: OktaCallbackComponent
   },
   { path: 'event-details/:eventId', 
-    component: EventDetailsComponent },
+    component: EventDetailsComponent 
+  },
   {
     path: 'users',
     component: UserListComponent
   },
   {
+    path: 'my-account/:username',
+    component: MyAccountComponent
+  },
+  {
     path: 'user-details/:username',
-    component: UserDetailsComponent
+    component: MyAccountComponent,
+    children: [
+      { path: '', component: UserDetailsComponent }
+    ]
+  },
+  {
+    path: 'organizer-details/:username',
+    component: MyAccountComponent,
+    children: [
+      { path: '', component: OrganizerDetailsComponent }
+    ]
+  },
+  {
+    path: 'admin-details/:username',
+    component: MyAccountComponent,
+    children: [
+      { path: '', component: AdminDetailsComponent }
+    ]
   },
   {
     path: 'my-calendars/:username',

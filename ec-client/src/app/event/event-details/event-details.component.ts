@@ -54,7 +54,6 @@ export class EventDetailsComponent implements OnInit {
         username: this.username
       }
 
-    // this.isRegistered(2);
   }
 
   async displayCalendarList():Promise<void> {
@@ -79,12 +78,5 @@ export class EventDetailsComponent implements OnInit {
 
     this.ngOnInit();
   }
-
-  // async isRegistered(id: any):Promise<any> {
-  //   let tempEvent = await this.registerService.getUsersRegisteredToEvent(id);
-  //   if(tempEvent.indexOf(this.username)) {
-  //     console.log(this.username);
-  //   }
-  // }
 
 }

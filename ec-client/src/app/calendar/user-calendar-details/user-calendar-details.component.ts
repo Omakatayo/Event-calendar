@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Calendar } from 'src/app/models/calendar.model';
-import { EventItem } from 'src/app/models/event.model';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
-  selector: 'app-user-calendar-view',
-  templateUrl: './user-calendar-view.component.html',
-  styleUrls: ['./user-calendar-view.component.css']
+  selector: 'app-user-calendar-details',
+  templateUrl: './user-calendar-details.component.html',
+  styleUrls: ['./user-calendar-details.component.css']
 })
-export class UserCalendarViewComponent implements OnInit {
+export class UserCalendarDetailsComponent implements OnInit {
 
   calendars!: Calendar[];
   username!: string;
@@ -70,4 +68,3 @@ interface obj {
   id : number
  name:string
  }
- 

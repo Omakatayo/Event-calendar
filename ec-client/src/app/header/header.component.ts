@@ -22,9 +22,9 @@ export class HeaderComponent implements OnInit {
     this.oktaAuth.signOut()
   }
 
-  userDetails() {
+  myAccount() {
     this.username = localStorage.getItem('username')!;
-    this.router.navigate(['user-details', this.username])
+    this.router.navigate(['my-account', this.username])
   }
 
   myCalendars() {
