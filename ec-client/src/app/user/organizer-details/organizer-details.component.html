@@ -1,1 +1,9 @@
-<p>organizer-details works!</p>
+<div class="wrapper">
+    <div class="event-list">
+        <div class="event" *ngFor="let event of events">
+            <h4>Created events</h4>
+            {{ event.eventName }}
+        </div>
+    </div>
+    <button>Add new event</button>
+</div>

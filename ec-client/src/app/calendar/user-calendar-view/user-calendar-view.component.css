@@ -83,6 +83,12 @@
 	display: block;
     border-top: 3px solid rgb(226, 19, 19);
 }
+
+.tab .material-icons {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
 @media (min-width: 768px) {
 
 	body {

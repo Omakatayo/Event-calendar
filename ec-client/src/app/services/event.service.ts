@@ -40,8 +40,8 @@ export class EventService {
     return this.http.get(`${this.baseUrl}/bycategory/${category}`);
   }
 
-  getEventListByOrganizer(organizer: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/byorganizer/${organizer}`);
+  async getEventListByOrganizer(organizer: string): Promise<any> {
+    return this.http.get<any>(`${this.baseUrl}/byorganizer/${organizer}`).toPromise();
   }
 
   getEventNameById(eventId: number): Promise<any> {

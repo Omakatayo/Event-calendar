@@ -14,7 +14,6 @@ export class MyAccountComponent implements OnInit {
   username!: string;
 
   constructor(private userService: UserService, 
-              private router: Router, 
               private route: ActivatedRoute) {}
 
   ngOnInit() {

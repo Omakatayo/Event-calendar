@@ -22,14 +22,6 @@
                         <input type="radio" name="tabs" id="{{calendar.id}}" />
                         <label for="{{calendar.id}}"><span class="material-icons">date_range</span> {{calendar.name}}</label>
                         <div class="tab">
-                            <!-- <h2>{{calendar.name}}</h2> -->
-                            <!-- <app-admin-details ></app-admin-details> -->
-                            Calendar id: {{calendar.id}}
-                            <br>
-                            Calendar name: {{calendar.name}}
-                            <br>
-                            Username: {{calendar.username}}
-                            <br>
                             Event list: 
                             <div *ngFor="let event of calendar.eventId" >
                                 <span [routerLink]="['/event-details', event]">{{ idNameArray[event] }}</span>
