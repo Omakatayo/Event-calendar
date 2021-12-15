@@ -24,8 +24,8 @@ export class UserCalendarViewComponent implements OnInit {
               private route: ActivatedRoute, private eventService: EventService) {
    }
 
-  ngOnInit() {
-    this.reloadData();
+  async ngOnInit() {
+    await this.reloadData();
   }
 
   async reloadData() {
@@ -43,8 +43,10 @@ export class UserCalendarViewComponent implements OnInit {
     this.tempArray2 = [...new Set(this.tempArray2)]
 
     this.tempArray2.forEach( async (key, value) => {
-      var obj = [];   
-      obj[value] = await this.getEventNameById(key);
+      if(key > 0) {
+        var obj = [];   
+        obj[value] = await this.getEventNameById(key);
+      }
     })
   }
 

@@ -1,9 +1,11 @@
 <div class="wrapper">
     <div class="event-list">
         <div class="event" *ngFor="let event of events">
-            <h4>Created events</h4>
+            <h4>Registered events</h4>
             {{ event.eventName }}
+            <span class="material-icons-two-tone" [routerLink]="['/update-event', event.id]">edit</span> 
+            <span class="material-icons" (click)="deleteEvent(event.id)">delete_forever</span>  
         </div>
     </div>
-    <button>Add new event</button>
+    <button [routerLink]="['/new-event']">Add new event</button>
 </div>

@@ -44,7 +44,7 @@ export class EventService {
     return this.http.get<any>(`${this.baseUrl}/byorganizer/${organizer}`).toPromise();
   }
 
-  getEventNameById(eventId: number): Promise<any> {
+  async getEventNameById(eventId: number): Promise<any> {
     return this.http.get(`${this.baseUrl}/namebyid/${eventId}`, {responseType: 'text'}).toPromise();
   }
 

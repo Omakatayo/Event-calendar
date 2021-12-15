@@ -139,7 +139,7 @@ public class EventService {
                 event.getEndTime(),
                 event.getAddress(),
                 event.getAvailability(),
-                event.getRegistered(),
+
                 event.getPrice(),
                 event.getCategory(),
                 event.getOrganizer(),

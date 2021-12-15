@@ -18,7 +18,31 @@ export class OrganizerDetailsComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   async ngOnInit(): Promise<void> {
+    this.reloadData();
+  }
+
+  async reloadData() {
     this.events = await this.eventService.getEventListByOrganizer(this.username);
+  }
+
+  updateEvent(eventId: number) {
+    this.eventService.deleteEvent(eventId)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log(error));
+  }
+
+  deleteEvent(eventId: number) {
+    this.eventService.deleteEvent(eventId)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log(error));
   }
 
 }

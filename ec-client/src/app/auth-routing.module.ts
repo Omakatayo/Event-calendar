@@ -16,6 +16,8 @@ import { HeaderComponent } from './header/header.component';
 import { MyAccountComponent } from './user/my-account/my-account.component';
 import { OrganizerDetailsComponent } from './user/organizer-details/organizer-details.component';
 import { AdminDetailsComponent } from './user/admin-details/admin-details.component';
+import { CreateEventComponent } from './event/create-event/create-event.component';
+import { UpdateEventComponent } from './event/update-event/update-event.component';
 
 const oktaConfig = {
   issuer: 'https://dev-46503723.okta.com/oauth2/default',
@@ -36,8 +38,14 @@ const routes: Routes = [
     path: 'callback',
     component: OktaCallbackComponent
   },
+  { path: 'new-event', 
+    component: CreateEventComponent 
+  },
   { path: 'event-details/:eventId', 
     component: EventDetailsComponent 
+  },
+  { path: 'update-event/:eventId', 
+    component: UpdateEventComponent 
   },
   {
     path: 'users',

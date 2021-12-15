@@ -25,17 +25,17 @@ public class EventDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 //    @DateTimeFormat(pattern = "HH:MM")
-    private LocalDateTime startTime;
+    private String startTime;
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
-    @DateTimeFormat(pattern = "HH:MM")
-    private LocalDateTime endTime;
+//    @DateTimeFormat(pattern = "HH:MM")
+    private String endTime;
 
     @Embedded
     private Address address;
 
     private Integer availability;
-    private Integer registered;
+    private Integer registered = 0;
     private BigDecimal price;
     private Category category;
     private String organizer;
@@ -51,7 +51,6 @@ public class EventDTO {
         this.endTime = eventDTO.endTime;
         this.address = eventDTO.getAddress();
         this.availability = eventDTO.getAvailability();
-        this.registered = eventDTO.getRegistered();
         this.price = eventDTO.getPrice();
         this.category = eventDTO.getCategory();
         this.organizer = eventDTO.getOrganizer();
@@ -59,4 +58,18 @@ public class EventDTO {
     }
 
 
+    public EventDTO(String eventName, String description, LocalDate startDate, String startTime, LocalDate endDate, String endTime, Address address, int availability, BigDecimal price, Category category, String organizer, String imageURL) {
+        this.eventName = eventName;
+        this.description = description;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.endDate = endDate;
+        this.endTime = endTime;
+        this.address = address;
+        this.availability = availability;
+        this.price = price;
+        this.category = category;
+        this.organizer = organizer;
+        this.imageURL = imageURL;
+    }
 }

@@ -7,9 +7,9 @@ export class EventItem {
         private _eventName: string,
         private _description: string,
         private _startDate: Date,
-        private _startTime: Date,
+        private _startTime: string,
         private _endDate: Date,
-        private _endTime: Date,
+        private _endTime: string,
         private _address: Address,
         private _availability: number,
         private _registered: number,
@@ -62,10 +62,10 @@ export class EventItem {
     public set address(value: Address) {
         this._address = value;
     }
-    public get endTime(): Date {
+    public get endTime(): string {
         return this._endTime;
     }
-    public set endTime(value: Date) {
+    public set endTime(value: string) {
         this._endTime = value;
     }
     public get endDate(): Date {
@@ -74,10 +74,10 @@ export class EventItem {
     public set endDate(value: Date) {
         this._endDate = value;
     }
-    public get startTime(): Date {
+    public get startTime(): string {
         return this._startTime;
     }
-    public set startTime(value: Date) {
+    public set startTime(value: string) {
         this._startTime = value;
     }
     public get startDate(): Date {

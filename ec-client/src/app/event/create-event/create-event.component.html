@@ -1,1 +1,94 @@
-<p>create-event works!</p>
+<div class="event-container">
+    <section class="tabs-wrapper">
+        <div class="tabs-container">
+            <div class="tabs-block">
+                <div class="tabs">
+                    <input type="radio" name="tabs" id="tab1" checked="checked"/>
+                    <label for="tab1"><span class="material-icons">event</span> Create event</label>
+                    <div class="tab">
+                        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+                            <div>
+                                <input type="text" formControlName="eventName" placeholder="Event name...">
+                                <p class="error-msg" *ngIf="eventName.invalid && eventName.touched">Please enter a valid event name!</p>
+                            </div>
+
+                            <div>
+                                <input type="text" formControlName="description" placeholder="Description...">
+                                <p class="error-msg" *ngIf="description.invalid && description.touched">Please enter a description!</p>
+                            </div>
+
+                            <div>
+                                <input type="date" formControlName="startDate" placeholder="Start date...">
+                                <p class="error-msg" *ngIf="startDate.invalid && startDate.touched">Please enter a start date!</p>
+                            </div>
+
+                            <div>
+                                <input type="text" formControlName="startTime" placeholder="Start time...">
+                                <p class="error-msg" *ngIf="startTime.invalid && startTime.touched">Please enter start time!</p>
+                            </div>
+
+                            <div>
+                                <input type="date" formControlName="endDate" placeholder="End date...">
+                                <p class="error-msg" *ngIf="endDate.invalid && endDate.touched">Please enter an end date!</p>
+                            </div>
+
+                            <div>
+                                <input type="text" formControlName="endTime" placeholder="End time...">
+                                <p class="error-msg" *ngIf="endTime.invalid && endTime.touched">Please enter end time!</p>
+                            </div>
+                            
+                            <div formGroupName="address">
+                                <div>
+                                    <input type="text" formControlName="street" placeholder="Street...">
+                                    <p class="error-msg" *ngIf="address.invalid && address.touched">Please enter a valid street name!</p>
+                                </div>
+                                <div>
+                                    <input type="text" formControlName="postalCode" placeholder="Postal code...">
+                                    <p class="error-msg" *ngIf="postalCode.invalid && postalCode.touched">Please enter a valid postal code!</p>
+                                </div>
+                                <div>
+                                    <input type="text" formControlName="city" placeholder="City...">
+                                    <p class="error-msg" *ngIf="city.invalid && city.touched">Please enter a valid city name!</p>
+                                </div>
+                                <div>
+                                    <input type="text" formControlName="country" placeholder="Country...">
+                                    <p class="error-msg" *ngIf="country.invalid && country.touched">Please enter a valid country name!</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <input type="number" formControlName="availability" placeholder="Number of seats...">
+                                <p class="error-msg" *ngIf="availability.invalid && availability.touched">Please enter a valid number of seats!</p>
+                            </div>
+
+                            <div>
+                                <input type="number" formControlName="price" placeholder="Price...">
+                                <p class="error-msg" *ngIf="price.invalid && price.touched">Please enter a valid price!</p>
+                            </div>
+
+                            <div>
+                                <select formControlName="category">
+                                    <option value="" invalid>Select category</option>
+                                    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                                </select>
+                                <p class="error-msg" *ngIf="category.invalid && category.touched">Please choose a category!</p>
+                            </div>
+
+                            <div>
+                                <input type="text" formControlName="organizer" placeholder="Organizer...">
+                                <p class="error-msg" *ngIf="organizer.invalid && organizer.touched">Please enter an Organizer!</p>
+                            </div>
+
+                            <div>
+                                <input type="text" formControlName="imageURL" placeholder="Image URL...">
+                                <!-- <p class="error-msg" *ngIf="url.invalid && url.touched">Please enter a valid age (range 1 to 99)!</p> -->
+                            </div>
+
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

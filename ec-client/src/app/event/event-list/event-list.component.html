@@ -5,8 +5,8 @@
             <span class="day">{{event.startDate | date :'d'}}</span>
         </div>
         <div class="details">
-            <div class="details-date">{{event.startDate | date :'MMMM'}} {{event.startDate | date :'d'}} @ {{event.startTime | date:'shortTime'}}
-                - {{event.endDate | date :'MMMM'}} {{event.endDate | date :'d'}} @ {{event.endTime | date:'shortTime'}}
+            <div class="details-date">{{event.startDate | date :'MMMM'}} {{event.startDate | date :'d'}} @ {{event.startTime}}
+                - {{event.endDate | date :'MMMM'}} {{event.endDate | date :'d'}} @ {{event.endTime}}
             </div>
             <div class="details-title" [routerLink]="['/event-details', event.id]" routerLinkActive="active">
                 {{event.eventName}}

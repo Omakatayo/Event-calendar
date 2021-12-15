@@ -34,18 +34,18 @@ public class Event {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-    @DateTimeFormat(pattern = "HH:MM")
-    private LocalDateTime startTime;
+//    @DateTimeFormat(pattern = "HH:MM")
+    private String startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
-    @DateTimeFormat(pattern = "HH:MM")
-    private LocalDateTime endTime;
+//    @DateTimeFormat(pattern = "HH:MM")
+    private String endTime;
 
     @Embedded
     private Address address;
 
     private int availability;
-    private int registered;
+    private int registered = 0;
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
@@ -57,8 +57,8 @@ public class Event {
 
 
     public Event(
-            String eventName, String description, LocalDate startDate, LocalDateTime startTime,
-            LocalDate endDate, LocalDateTime endTime, Address address, int availability, int registered, BigDecimal price,
+            String eventName, String description, LocalDate startDate, String startTime,
+            LocalDate endDate, String endTime, Address address, int availability, int registered, BigDecimal price,
             Category category, String organizer) {
         this.eventName = eventName;
         this.description = description;

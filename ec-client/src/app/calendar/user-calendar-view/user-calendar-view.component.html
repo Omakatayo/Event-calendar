@@ -1,18 +1,3 @@
-<!-- <ul style="display: flex; flex-direction: column; gap: 20px">
-    <li *ngFor="let calendar of calendars">
-        Calendar id: {{calendar.id}}
-        <br>
-        Calendar name: {{calendar.name}}
-        <br>
-        Username: {{calendar.username}}
-        <br>
-        Event list: 
-        <div *ngFor="let event of calendar.eventId" >
-            <span [routerLink]="['/event-details', event]">{{ idNameArray[event] }}</span>
-            <span class="material-icons" (click)="deleteEvent(calendar.id, event)">delete_forever</span>
-        </div>      
-    </li>
-</ul> -->
 <div class="calendar-container">
     <section class="tabs-wrapper">
         <div class="tabs-container">
@@ -22,11 +7,8 @@
                         <input type="radio" name="tabs" id="{{calendar.id}}" />
                         <label for="{{calendar.id}}"><span class="material-icons">date_range</span> {{calendar.name}}</label>
                         <div class="tab">
-                            Event list: 
-                            <div *ngFor="let event of calendar.eventId" >
-                                <span [routerLink]="['/event-details', event]">{{ idNameArray[event] }}</span>
-                                <span class="material-icons" (click)="deleteEvent(calendar.id, event)">delete_forever</span>
-                            </div>
+                            <app-user-calendar-details [idNameArray]="idNameArray" [username]="username" [calendars]="calendars" [calendar]="calendar">
+                            </app-user-calendar-details>
                         </div>
                     </div>
                 </div>
