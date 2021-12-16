@@ -12,12 +12,13 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import { UserDetailsComponent } from './user/user-details/user-details.component';
 import { UserCalendarViewComponent } from './calendar/user-calendar-view/user-calendar-view.component';
-import { HeaderComponent } from './header/header.component';
 import { MyAccountComponent } from './user/my-account/my-account.component';
 import { OrganizerDetailsComponent } from './user/organizer-details/organizer-details.component';
 import { AdminDetailsComponent } from './user/admin-details/admin-details.component';
 import { CreateEventComponent } from './event/create-event/create-event.component';
 import { UpdateEventComponent } from './event/update-event/update-event.component';
+import { EventManagementComponent } from './event/event-management/event-management.component';
+import { OktaAuthGuard, OktaAuthGuardAdmin, OktaAuthGuardAdminOrganizer } from './app.guard';
 
 const oktaConfig = {
   issuer: 'https://dev-46503723.okta.com/oauth2/default',
@@ -38,55 +39,76 @@ const routes: Routes = [
     path: 'callback',
     component: OktaCallbackComponent
   },
+  {
+    path: 'event-management',
+    component: EventManagementComponent,
+    canActivate: [OktaAuthGuardAdminOrganizer]
+  },
   { path: 'new-event', 
-    component: CreateEventComponent 
+    component: EventManagementComponent,
+    children: [
+      { path: '', component: CreateEventComponent }
+    ],
+    canActivate: [OktaAuthGuardAdminOrganizer]
+  },
+  { path: 'update-event/:eventId', 
+    component: EventManagementComponent,
+    children: [
+      { path: '', component: UpdateEventComponent }
+    ],
+    canActivate: [OktaAuthGuardAdminOrganizer]
   },
   { path: 'event-details/:eventId', 
     component: EventDetailsComponent 
   },
-  { path: 'update-event/:eventId', 
-    component: UpdateEventComponent 
-  },
-  {
-    path: 'users',
-    component: UserListComponent
-  },
   {
     path: 'my-account/:username',
-    component: MyAccountComponent
+    component: MyAccountComponent,
+    canActivate: [OktaAuthGuard]
   },
   {
     path: 'user-details/:username',
     component: MyAccountComponent,
     children: [
       { path: '', component: UserDetailsComponent }
-    ]
+    ],
+    canActivate: [OktaAuthGuard]
   },
   {
     path: 'organizer-details/:username',
     component: MyAccountComponent,
     children: [
       { path: '', component: OrganizerDetailsComponent }
-    ]
+    ],
+    canActivate: [OktaAuthGuardAdminOrganizer]
   },
   {
     path: 'admin-details/:username',
     component: MyAccountComponent,
     children: [
       { path: '', component: AdminDetailsComponent }
-    ]
+    ],
+    canActivate: [OktaAuthGuard]
+  },
+  {
+    path: 'users',
+    component: AdminDetailsComponent,
+    children: [
+      { path: '', component: UserListComponent }
+    ],
+    canActivate: [OktaAuthGuardAdmin]
   },
   {
     path: 'my-calendars/:username',
-    component: UserCalendarViewComponent
+    component: UserCalendarViewComponent,
+    canActivate: [OktaAuthGuard]
   }
 ];
 
 @NgModule({
   declarations: [
     HomeComponent,
-    EventListComponent,
-    UserListComponent
+    EventListComponent
   ],
   imports: [
     CommonModule,

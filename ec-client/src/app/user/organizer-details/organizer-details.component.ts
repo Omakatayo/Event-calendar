@@ -11,7 +11,7 @@ import { EventService } from 'src/app/services/event.service';
 export class OrganizerDetailsComponent implements OnInit {
 
   @Input() user!: User;
-  @Input() username!: string;
+  username!: string;
   
   events!: EventItem[];
 
@@ -22,6 +22,7 @@ export class OrganizerDetailsComponent implements OnInit {
   }
 
   async reloadData() {
+    this.username = localStorage.getItem('username')!;
     this.events = await this.eventService.getEventListByOrganizer(this.username);
   }
 

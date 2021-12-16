@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { OktaAuth, UserClaims } from '@okta/okta-auth-js';
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-my-account',
@@ -10,21 +11,32 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MyAccountComponent implements OnInit {
 
-  user: User = new User(0, '', '', '', '', '');
+  user!: User;
+  tempUser!: UserClaims;
+  id!: string;
   username!: string;
+  email!: string;
+  accountType!: string;
 
-  constructor(private userService: UserService, 
-              private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private oktaAuth: OktaAuth, public authService: AuthService) {
+    this.user = new User('', '', '', '');
+  }
 
-  ngOnInit() {
- 
-    this.username = this.route.snapshot.params['username'];
+  async ngOnInit() {
+    this.tempUser = await this.oktaAuth.getUser();
+    this.id = this.tempUser.sub;
 
-    this.userService.getUser(this.username)
-      .subscribe(data => {
-        console.log(data)
-        this.user = data;
-      }, error => console.log(error))
+    this.username = localStorage.getItem('username')!;
+
+    this.email = this.tempUser.preferred_username!;
+
+    if (this.tempUser.groups[1] != null) {
+      this.accountType = this.tempUser.groups[1];
+    } else { this.accountType = this.tempUser.groups[0]; }
+
+    this.user = new User(this.id, this.username, this.email, this.accountType);
+    console.log(this.user)
+
   }
 
 }

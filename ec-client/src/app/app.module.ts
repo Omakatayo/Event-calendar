@@ -25,6 +25,7 @@ import { MyAccountComponent } from './user/my-account/my-account.component';
 import { OrganizerDetailsComponent } from './user/organizer-details/organizer-details.component';
 import { AdminDetailsComponent } from './user/admin-details/admin-details.component';
 import { UserCalendarDetailsComponent } from './calendar/user-calendar-details/user-calendar-details.component';
+import { EventManagementComponent } from './event/event-management/event-management.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { UserCalendarDetailsComponent } from './calendar/user-calendar-details/u
     CreateUserComponent,
     UpdateUserComponent,
     UserDetailsComponent,
-    // UserListComponent,
+    UserListComponent,
     CreateEventComponent,
     UpdateEventComponent,
     EventDetailsComponent,
@@ -46,7 +47,8 @@ import { UserCalendarDetailsComponent } from './calendar/user-calendar-details/u
     MyAccountComponent,
     OrganizerDetailsComponent,
     AdminDetailsComponent,
-    UserCalendarDetailsComponent
+    UserCalendarDetailsComponent,
+    EventManagementComponent
   ],
   imports: [
     BrowserModule,

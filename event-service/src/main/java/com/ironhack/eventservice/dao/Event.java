@@ -12,10 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -34,11 +31,11 @@ public class Event {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-//    @DateTimeFormat(pattern = "HH:MM")
+
     private String startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
-//    @DateTimeFormat(pattern = "HH:MM")
+
     private String endTime;
 
     @Embedded

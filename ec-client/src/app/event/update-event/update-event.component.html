@@ -1,94 +1,81 @@
-<div class="event-container">
-    <section class="tabs-wrapper">
-        <div class="tabs-container">
-            <div class="tabs-block">
-                <div class="tabs">
-                    <input type="radio" name="tabs" id="tab1" checked="checked"/>
-                    <label for="tab1"><span class="material-icons">event</span> Update event</label>
-                    <div class="tab">
-                        <form (ngSubmit)="onSubmit()">
-                            <div>
-                                <input type="text" placeholder="Event name..." [(ngModel)]="event.eventName" #eventName="ngModel" name="eventName">
-                                <p class="error-msg" *ngIf="eventName.invalid && eventName.touched">Please enter a valid event name!</p>
-                            </div>
+<form (ngSubmit)="onSubmit()">
+    <div>
+        <input type="text" placeholder="Event name..." [(ngModel)]="event.eventName" #eventName="ngModel" name="eventName">
+        <p class="error-msg" *ngIf="eventName.invalid && eventName.touched">Please enter a valid event name!</p>
+    </div>
 
-                            <div>
-                                <input type="text" placeholder="Description..." [(ngModel)]="event.description" #description="ngModel" name="description">
-                                <p class="error-msg" *ngIf="description.invalid && description.touched">Please enter a description!</p>
-                            </div>
+    <div>
+        <input type="text" placeholder="Description..." [(ngModel)]="event.description" #description="ngModel" name="description">
+        <p class="error-msg" *ngIf="description.invalid && description.touched">Please enter a description!</p>
+    </div>
 
-                            <div>
-                                <input type="date" placeholder="Start date..." [(ngModel)]="event.startDate" #startDate="ngModel" name="startDate">
-                                <p class="error-msg" *ngIf="startDate.invalid && startDate.touched">Please enter a start date!</p>
-                            </div>
+    <div>
+        <input type="date" placeholder="Start date..." [(ngModel)]="event.startDate" #startDate="ngModel" name="startDate">
+        <p class="error-msg" *ngIf="startDate.invalid && startDate.touched">Please enter a start date!</p>
+    </div>
 
-                            <div>
-                                <input type="text" placeholder="Start time..." [(ngModel)]="event.startTime" #startTime="ngModel" name="startTime">
-                                <p class="error-msg" *ngIf="startTime.invalid && startTime.touched">Please enter start time!</p>
-                            </div>
+    <div>
+        <input type="text" placeholder="Start time..." [(ngModel)]="event.startTime" #startTime="ngModel" name="startTime">
+        <p class="error-msg" *ngIf="startTime.invalid && startTime.touched">Please enter start time!</p>
+    </div>
 
-                            <div>
-                                <input type="date" placeholder="End date..." [(ngModel)]="event.endDate" #endDate="ngModel" name="endDate">
-                                <p class="error-msg" *ngIf="endDate.invalid && endDate.touched">Please enter an end date!</p>
-                            </div>
+    <div>
+        <input type="date" placeholder="End date..." [(ngModel)]="event.endDate" #endDate="ngModel" name="endDate">
+        <p class="error-msg" *ngIf="endDate.invalid && endDate.touched">Please enter an end date!</p>
+    </div>
 
-                            <div>
-                                <input type="text" placeholder="End time..." [(ngModel)]="event.endTime" #endTime="ngModel" name="endTime">
-                                <p class="error-msg" *ngIf="endTime.invalid && endTime.touched">Please enter end time!</p>
-                            </div>
-                            
-                            <div>
-                                <div>
-                                    <input type="text" placeholder="Street..." [(ngModel)]="event.address.street" #street="ngModel" name="street">
-                                    <p class="error-msg" *ngIf="street.invalid && street.touched">Please enter a valid street name!</p>
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="Postal code..." [(ngModel)]="event.address.postalCode" #postalCode="ngModel" name="postalCode">
-                                    <p class="error-msg" *ngIf="postalCode.invalid && postalCode.touched">Please enter a valid postal code!</p>
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="City..." [(ngModel)]="event.address.city" #city="ngModel" name="city">
-                                    <p class="error-msg" *ngIf="city.invalid && city.touched">Please enter a valid city name!</p>
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="Country..." [(ngModel)]="event.address.country" #country="ngModel" name="country">
-                                    <p class="error-msg" *ngIf="country.invalid && country.touched">Please enter a valid country name!</p>
-                                </div>
-                            </div>
-
-                            <div>
-                                <input type="number" placeholder="Number of seats..." [(ngModel)]="event.availability" #availability="ngModel" name="availability">
-                                <p class="error-msg" *ngIf="availability.invalid && availability.touched">Please enter a valid number of seats!</p>
-                            </div>
-
-                            <div>
-                                <input type="number" placeholder="Price..." [(ngModel)]="event.price" #price="ngModel" name="price">
-                                <p class="error-msg" *ngIf="price.invalid && price.touched">Please enter a valid price!</p>
-                            </div>
-
-                            <div>
-                                <select [(ngModel)]="event.category" #category="ngModel" name="category">
-                                    <option value="" invalid>Select category</option>
-                                    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-                                </select>
-                                <p class="error-msg" *ngIf="category.invalid && category.touched">Please choose a category!</p>
-                            </div>
-
-                            <div>
-                                <input type="text" placeholder="Organizer..." [(ngModel)]="event.organizer" #organizer="ngModel" name="organizer">
-                                <p class="error-msg" *ngIf="organizer.invalid && organizer.touched">Please enter an Organizer!</p>
-                            </div>
-
-                            <div>
-                                <input type="text" placeholder="Image URL..." [(ngModel)]="event.imageURL" #imageURL="ngModel" name="imageURL">
-                                
-                            </div>
-
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <div>
+        <input type="text" placeholder="End time..." [(ngModel)]="event.endTime" #endTime="ngModel" name="endTime">
+        <p class="error-msg" *ngIf="endTime.invalid && endTime.touched">Please enter end time!</p>
+    </div>
+    
+    <div>
+        <div>
+            <input type="text" placeholder="Street..." [(ngModel)]="event.address.street" #street="ngModel" name="street">
+            <p class="error-msg" *ngIf="street.invalid && street.touched">Please enter a valid street name!</p>
         </div>
-    </section>
-</div>
+        <div>
+            <input type="text" placeholder="Postal code..." [(ngModel)]="event.address.postalCode" #postalCode="ngModel" name="postalCode">
+            <p class="error-msg" *ngIf="postalCode.invalid && postalCode.touched">Please enter a valid postal code!</p>
+        </div>
+        <div>
+            <input type="text" placeholder="City..." [(ngModel)]="event.address.city" #city="ngModel" name="city">
+            <p class="error-msg" *ngIf="city.invalid && city.touched">Please enter a valid city name!</p>
+        </div>
+        <div>
+            <input type="text" placeholder="Country..." [(ngModel)]="event.address.country" #country="ngModel" name="country">
+            <p class="error-msg" *ngIf="country.invalid && country.touched">Please enter a valid country name!</p>
+        </div>
+    </div>
+
+    <div>
+        <input type="number" placeholder="Number of seats..." [(ngModel)]="event.availability" #availability="ngModel" name="availability">
+        <p class="error-msg" *ngIf="availability.invalid && availability.touched">Please enter a valid number of seats!</p>
+    </div>
+
+    <div>
+        <input type="number" placeholder="Price..." [(ngModel)]="event.price" #price="ngModel" name="price">
+        <p class="error-msg" *ngIf="price.invalid && price.touched">Please enter a valid price!</p>
+    </div>
+
+    <div>
+        <select [(ngModel)]="event.category" #category="ngModel" name="category">
+            <option value="" invalid>Select category</option>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+        <p class="error-msg" *ngIf="category.invalid && category.touched">Please choose a category!</p>
+    </div>
+
+    <div>
+        <input type="text" placeholder="Organizer..." [(ngModel)]="event.organizer" #organizer="ngModel" name="organizer">
+        <p class="error-msg" *ngIf="organizer.invalid && organizer.touched">Please enter an Organizer!</p>
+    </div>
+
+    <div>
+        <input type="text" placeholder="Image URL..." [(ngModel)]="event.imageURL" #imageURL="ngModel" name="imageURL">
+        
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+                    

@@ -12,6 +12,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  async getUsers(): Promise<any> {
+    return this.http.get<any>('https://dev-46503723.okta.com/api/v1/apps/0oa2xs8mqgUwmJyyF5d7/users').toPromise();
+  }
+
   getUserList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }

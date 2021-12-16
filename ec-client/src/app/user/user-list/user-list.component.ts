@@ -11,15 +11,16 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserListComponent implements OnInit {
 
-  users: Observable<User[]> | undefined;
+  users!: any[];
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.reloadData();
   }
 
-  reloadData() {
-    this.users = this.userService.getUserList();
+  async reloadData(): Promise<void> {
+    this.users = await this.userService.getUsers();
+    console.log(this.users);
   }
 }

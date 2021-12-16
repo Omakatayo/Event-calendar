@@ -3,22 +3,22 @@
         <div class="tabs-container">
             <div class="tabs-block">
                 <div class="tabs">
-                    <input type="radio" name="tabs" id="tab1"  />
+                    <input type="radio" name="tabs" id="tab1" checked="checked" />
                     <label for="tab1"><span class="material-icons">account_box</span> User details</label>
                     <div class="tab">
                         <app-user-details [user]="user" [username]="username"></app-user-details>
                     </div>
 
-                    <input type="radio" name="tabs" id="tab2" checked="checked"/>
-                    <label for="tab2"><span class="material-icons">edit_calendar</span> Organizer</label>
-                    <div class="tab">
-                        <app-organizer-details [user]="user" [username]="username"></app-organizer-details>
+                    <input *ngIf="authService.isOrganizer()" type="radio" name="tabs" id="tab2"/>
+                    <label *ngIf="authService.isOrganizer()" for="tab2"><span class="material-icons">edit_calendar</span> Organizer</label>
+                    <div *ngIf="authService.isOrganizer()" class="tab">
+                        <app-organizer-details [user]="user"></app-organizer-details>
                     </div>
 
-                    <input type="radio" name="tabs" id="tab3" />
-                    <label for="tab3"><span class="material-icons">admin_panel_settings</span> Admin</label>
-                    <div class="tab">
-                        <app-admin-details [user]="user" [username]="username"></app-admin-details>
+                    <input *ngIf="authService.isAdmin()" type="radio" name="tabs" id="tab3" />
+                    <label *ngIf="authService.isAdmin()" for="tab3"><span class="material-icons">admin_panel_settings</span> Admin</label>
+                    <div *ngIf="authService.isAdmin()" class="tab">
+                        <app-admin-details [user]="user"></app-admin-details>
                     </div>
                 </div>
             </div>
