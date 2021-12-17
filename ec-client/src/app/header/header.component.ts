@@ -11,8 +11,14 @@ import { OktaAuth } from '@okta/okta-auth-js';
 export class HeaderComponent implements OnInit {
 
   username: string = '';
+  searchType:string;
+  searchString:string;
 
-  constructor(public oktaAuth: OktaAuth, public authService: OktaAuthStateService, private router: Router) {}
+
+  constructor(public oktaAuth: OktaAuth, public authService: OktaAuthStateService, private router: Router) {
+    this.searchString = "";
+    this.searchType = "";
+  }
 
   ngOnInit() {
   }

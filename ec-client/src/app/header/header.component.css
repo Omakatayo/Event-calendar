@@ -1,6 +1,7 @@
 header {
     padding: 0em 2em;
     display: flex;
+    flex-direction: column;
     margin-bottom: 40px;
     background: rgba(211, 211, 211, 0.151);
 }
@@ -32,4 +33,13 @@ header {
 
 .nav-list li:nth-child(5) {
     margin-left: auto;
+}
+
+.search-bar {
+    margin: 0 auto 10px auto;
+    grid-template-columns: 3fr 2fr 1fr;
+    display: grid;
+    height: 35px;
+    width: 60%;
+
 }
