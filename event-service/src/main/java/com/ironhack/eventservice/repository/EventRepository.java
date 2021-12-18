@@ -28,6 +28,4 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT e FROM Event e ORDER BY e.startDate")
     List<Event> findAllOpenEventsSorted();
 
-//    @Query(nativeQuery = true, value = "SELECT * FROM event WHERE :searchType = :parameter AND :parameter IS NOT NULL")
-//    List<Event> findByParameter(@Param("searchType") String searchType, @Param("parameter") String parameter);
 }

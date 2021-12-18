@@ -66,11 +66,6 @@ public class EventController {
         return eventService.getEventNameById(id);
     }
 
-//    @GetMapping("/{searchType}{parameter}")
-//    public List<Event> getEventByParameter(@PathVariable String searchType, @PathVariable String parameter) {
-//        return eventRepository.findByParameter(searchType, parameter);
-//    }
-
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable String id) {
         Event event = eventService.getEventById(id);
