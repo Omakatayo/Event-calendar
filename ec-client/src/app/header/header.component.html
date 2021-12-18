@@ -1,0 +1,18 @@
+<header>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">EventCalendarApp</a></li>
+            <li><a *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="myAccount()" routerLinkActive="active">
+                <span class="material-icons">account_circle</span>My account</a></li>
+            <li><a *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="myCalendars()" routerLinkActive="active">
+                <span class="material-icons">calendar_today</span>My calendars</a></li>
+            <li>
+                <a *ngIf="!(authService.authState$ | async)?.isAuthenticated" (click)="login()">
+                    <span class="material-icons">login</span>Login</a>
+                <a *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="logout()">
+                    <span class="material-icons">logout</span>Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <app-search-bar></app-search-bar>
+</header>

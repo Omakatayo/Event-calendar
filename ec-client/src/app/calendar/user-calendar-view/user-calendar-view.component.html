@@ -1,0 +1,18 @@
+<div class="calendar-container">
+    <section class="tabs-wrapper">
+        <div class="tabs-container">
+            <div class="tabs-block">
+                <div class="tabs">
+                    <div *ngFor="let calendar of calendars">
+                        <input type="radio" name="tabs" id="{{calendar.id}}" />
+                        <label for="{{calendar.id}}"><span class="material-icons">date_range</span> {{calendar.name}}</label>
+                        <div class="tab">
+                            <app-user-calendar-details [idNameArray]="idNameArray" [username]="username" [calendars]="calendars" [calendar]="calendar">
+                            </app-user-calendar-details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

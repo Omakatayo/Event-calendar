@@ -1,0 +1,32 @@
+<div class="wrapper">
+        <div class="event-container" *ngIf="authService.isOrganizer(); else notAnOrganizer">
+            <div class="button"><button [routerLink]="['/new-event']">ADD NEW EVENT</button></div>
+            <div class="event-box">
+                <h3>Registered events</h3>
+                <div class="event" *ngFor="let event of events" (click)="updateEvent(event.id)">
+                    <!-- <span class="material-icons-two-tone" [routerLink]="['/update-event', event.id]">edit</span>  -->
+                    <div>
+                        Event name: {{ event.eventName }}<br>
+                        Start date: {{ event.startDate }}<br>
+                        End date: {{ event.endDate }}
+                    </div>
+                    <hr>
+                    <div>
+                        Tickets available: {{ event.availability }}<br>
+                        Registered users: {{ event.registered }}<br>
+                        Price: {{ event.price | currency}}
+                    </div>
+                    <span class="material-icons" (click)="deleteEvent(event.id)">delete_forever</span>              
+                </div>
+            </div>    
+        </div>
+        <ng-template #notAnOrganizer>
+            <div class="message">
+                To add events you need to have an "Organizer" account.<br>
+                You can send a request to our Admin to change your account type.<br>
+                To do that simply <a href="https://dev-46503723.okta.com/login/login.htm">login</a> to you Okta account
+                and on the "My Apps" page click "Request an app".<br>
+                In popup window simply write: "your_username - ORGANIZER" and click "Send".<br>
+            </div>
+        </ng-template>
+</div>

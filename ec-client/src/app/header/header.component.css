@@ -1,0 +1,44 @@
+header {
+    padding: 0em 2em;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    background: rgba(211, 211, 211, 0.151);
+}
+
+.nav {
+    padding: 2px;
+    flex-grow: 1;
+}
+
+.nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 3em;
+}
+
+.nav-list a {
+    line-height: 3;
+    text-decoration: none;
+    color:rgb(226, 19, 19);
+    font-weight: 700;
+    font-size: 1.3em;
+}
+
+.nav-list li:nth-child(2) {
+    margin-left: auto;
+}
+
+.nav-list li:nth-child(5) {
+    margin-left: auto;
+}
+
+.search-bar {
+    margin: 0 auto 10px auto;
+    grid-template-columns: 3fr 2fr 1fr;
+    display: grid;
+    height: 35px;
+    width: 60%;
+}

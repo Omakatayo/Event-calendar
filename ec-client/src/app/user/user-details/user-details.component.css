@@ -1,0 +1,45 @@
+.wrapper {
+    padding: 0.8rem;
+    font-size: 1.1em;
+    line-height: 2;
+    font-weight: 500;
+}
+
+.user-box {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 6fr 2fr;
+}
+
+.button {
+    margin: 0 auto;
+    width: 160px;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 140px;
+    height: 45px;
+    background-color: #fff;
+    border: 3px solid rgb(226, 19, 19);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1em;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+button:hover{
+    font-size: 1.1em;
+    width: 150px;
+    height: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(226, 19, 19);
+    letter-spacing: 0.2px;
+}

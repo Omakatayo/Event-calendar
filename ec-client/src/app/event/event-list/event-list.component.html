@@ -1,0 +1,31 @@
+<div class="event-list">
+    <div class="event" *ngFor="let event of events">
+        <div class="time">
+            <span class="weekday">{{event.startDate | date :'EEE'}}</span>
+            <span class="day">{{event.startDate | date :'d'}}</span>
+        </div>
+        <div class="details">
+            <div class="details-date">{{event.startDate | date :'MMMM'}} {{event.startDate | date :'d'}} @ {{event.startTime}}
+                - {{event.endDate | date :'MMMM'}} {{event.endDate | date :'d'}} @ {{event.endTime}}
+            </div>
+            <div class="details-title" [routerLink]="['/event-details', event.id]" routerLinkActive="active">
+                {{event.eventName}}
+            </div>
+            <div class="details-address">
+                {{event.address.street}}, {{event.address.postalCode}} {{event.address.city}}, {{event.address.country}}
+            </div>
+            <div class="details-description">
+                {{event.description}}
+            </div>
+            <div class="details-price">
+                <span *ngIf="event.price > 0; else Free">{{event.price | currency}}</span>
+                <ng-template #Free>
+                    Free entry
+                  </ng-template>
+            </div>
+        </div>
+        <div class="image">
+            <img src={{event.imageURL}}>
+        </div>
+    </div>
+</div>
