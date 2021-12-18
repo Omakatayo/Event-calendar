@@ -30,15 +30,16 @@ export class EventDetailsComponent implements OnInit {
   register!: RegisterItem;
   users!: string[];
   compare: boolean = false;
+  address = new Address('', '', '', '');
 
   constructor(private eventService: EventService, private route: ActivatedRoute, 
               private calendarService: CalendarService, private registerService: RegisterService,
               public oktaAuth: OktaAuth, public authService: OktaAuthStateService) {
+    this.event = new EventItem(0, '', '', new Date(), '', new Date(), '', this.address, 0, 0, 0, '', '' ,'');
   }
 
   async ngOnInit(): Promise<void> {
     this.eventId = this.route.snapshot.params['eventId'];
-    console.log(this.eventId)
     this.username = localStorage.getItem('username')!;
     this.users = await this.registerService.getUsersRegisteredToEvent(this.eventId);
     this.compare = Boolean(Number(this.users.indexOf(this.username)));
@@ -67,7 +68,9 @@ export class EventDetailsComponent implements OnInit {
 
   async registerToEvent():Promise<void> {   
     await this.registerService.register(this.register)
+    
     await this.eventService.registerToEvent(this.eventId, this.event);
+
     this.ngOnInit();
   }
 

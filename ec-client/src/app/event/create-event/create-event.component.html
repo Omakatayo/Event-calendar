@@ -25,14 +25,14 @@
     </div>
 
     <div>
-        <input type="text" formControlName="endTime" placeholder="End time...">
+        <input type="time" formControlName="endTime" placeholder="End time...">
         <p class="error-msg" *ngIf="endTime.invalid && endTime.touched">Please enter end time!</p>
     </div>
     
     <div formGroupName="address">
         <div>
             <input type="text" formControlName="street" placeholder="Street...">
-            <p class="error-msg" *ngIf="address.invalid && address.touched">Please enter a valid street name!</p>
+            <p class="error-msg" *ngIf="street.invalid && street.touched">Please enter a valid street name!</p>
         </div>
         <div>
             <input type="text" formControlName="postalCode" placeholder="Postal code...">

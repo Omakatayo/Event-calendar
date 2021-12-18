@@ -13,5 +13,5 @@
         {{calendar.name}}
     </button>
 </div>
-<button *ngIf="(authService.authState$ | async)?.isAuthenticated && compare === true" (click)="registerToEvent()">Register to event</button>
-<button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="unregisterFromEvent()">Unregister from event</button>
+<button *ngIf="((authService.authState$ | async)?.isAuthenticated && compare) || event.availability <= 0" (click)="registerToEvent()">Register to event</button>
+<button *ngIf="((authService.authState$ | async)?.isAuthenticated && !compare) || event.registered <= 0" (click)="unregisterFromEvent()">Unregister from event</button>
