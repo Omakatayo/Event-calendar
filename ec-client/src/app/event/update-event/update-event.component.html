@@ -15,7 +15,7 @@
     </div>
 
     <div>
-        <input type="text" placeholder="Start time..." [(ngModel)]="event.startTime" #startTime="ngModel" name="startTime">
+        <input type="time" placeholder="Start time..." [(ngModel)]="event.startTime" #startTime="ngModel" name="startTime">
         <p class="error-msg" *ngIf="startTime.invalid && startTime.touched">Please enter start time!</p>
     </div>
 
@@ -25,7 +25,7 @@
     </div>
 
     <div>
-        <input type="text" placeholder="End time..." [(ngModel)]="event.endTime" #endTime="ngModel" name="endTime">
+        <input type="time" placeholder="End time..." [(ngModel)]="event.endTime" #endTime="ngModel" name="endTime">
         <p class="error-msg" *ngIf="endTime.invalid && endTime.touched">Please enter end time!</p>
     </div>
     

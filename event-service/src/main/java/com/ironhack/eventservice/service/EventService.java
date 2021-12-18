@@ -79,8 +79,14 @@ public class EventService {
         if (eventDTO.getStartDate() != null) {
             event.setStartDate(eventDTO.getStartDate());
         }
+        if (eventDTO.getStartTime() != null) {
+            event.setStartTime(eventDTO.getStartTime());
+        }
         if (eventDTO.getEndDate() != null) {
             event.setEndDate(eventDTO.getEndDate());
+        }
+        if (eventDTO.getEndTime() != null) {
+            event.setEndTime(eventDTO.getEndTime());
         }
         if (eventDTO.getAddress() != null) {
             event.setAddress(eventDTO.getAddress());
@@ -104,16 +110,24 @@ public class EventService {
     public void registerToEvent(Long id) {
         Event event = eventRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
-        event.setAvailability(event.getAvailability() - 1);
-        event.setRegistered(event.getRegistered() + 1);
+        if (event.getAvailability() > 0) {
+            event.setAvailability(event.getAvailability() - 1);
+            event.setRegistered(event.getRegistered() + 1);
+        } else {
+            throw new NullPointerException("Number of available tickets cannot be lower than 0!");
+        }
         eventRepository.save(event);
     }
 
     public void unregisterFromEvent(Long id) {
         Event event = eventRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("Event with id " + id + " not found!"));
-        event.setAvailability(event.getAvailability() + 1);
-        event.setRegistered(event.getRegistered() - 1);
+        if (event.getRegistered() > 0) {
+            event.setRegistered(event.getRegistered() - 1);
+            event.setAvailability(event.getAvailability() + 1);
+        } else {
+            throw new NullPointerException("Number of registrations cannot be lower than 0!");
+        }
         eventRepository.save(event);
     }
 
