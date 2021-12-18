@@ -3,15 +3,15 @@
         <div class="tabs-container">
             <div class="tabs-block">
                 <div class="tabs">
-                    <input type="radio" name="tabs" id="tab1" checked="checked" />
+                    <input type="radio" name="tabs" id="tab1" checked="checked"/>
                     <label for="tab1"><span class="material-icons">account_box</span> User details</label>
                     <div class="tab">
                         <app-user-details [user]="user" [username]="username"></app-user-details>
                     </div>
 
-                    <input *ngIf="authService.isOrganizer()" type="radio" name="tabs" id="tab2"/>
-                    <label *ngIf="authService.isOrganizer()" for="tab2"><span class="material-icons">edit_calendar</span> Organizer</label>
-                    <div *ngIf="authService.isOrganizer()" class="tab">
+                    <input type="radio" name="tabs" id="tab2"/>
+                    <label for="tab2"><span class="material-icons">edit_calendar</span> Organizer</label>
+                    <div class="tab">
                         <app-organizer-details [user]="user"></app-organizer-details>
                     </div>
 

@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     if(await this.oktaAuth.isAuthenticated()) {
-      console.log(await this.oktaAuth.getUser());
       this.user = await this.oktaAuth.getUser();
       const role1 = this.user.groups[1]!;
       const role2 = this.user.groups[2]!;
@@ -27,7 +26,6 @@ export class HomeComponent implements OnInit {
       if(role2 != null) {
         localStorage.setItem(role2, role2);
       }
-      console.log(this.user.groups);
 
       this.username = await this.user.user_name;
       // this.username = (await this.oktaAuth.getUser()).given_name!;

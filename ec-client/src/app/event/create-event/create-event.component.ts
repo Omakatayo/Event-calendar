@@ -73,14 +73,11 @@ export class CreateEventComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.categories)
   }
 
   onSubmit(): void {
     console.log("Creating Event");
     console.log(this.registerForm);
-    console.log(this.registerForm.value);
-    console.log(this.eventName.value);
     this.eventService.createEvent(this.registerForm.value)
       .subscribe( data => {
         console.log(data);

@@ -22,17 +22,22 @@ export class UpdateEventComponent implements OnInit {
     this.categories = ['MEN_CIRCLES', 'MOVEMENT', 'SPIRITUAL']
    }
 
-  async ngOnInit(): Promise<void> {
-    this.eventId = this.route.snapshot.params['eventId'];
-    console.log(this.eventId);
+  async ngOnInit(): Promise<void> {   
+    const routeCheck = this.route.snapshot.url[0].path;
 
+    if (routeCheck === 'update-event') {
+      this.reload();
+    }
+  }
+
+  async reload() {
+    this.eventId = await this.route.snapshot.params['eventId'];
 
     this.eventService.getEvent(this.eventId)
       .subscribe(data => {
         console.log(data)
         this.event = data;
       }, error => console.log(error))
-
   }
 
   onSubmit(): void {

@@ -7,24 +7,12 @@
             <li><a *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="myCalendars()" routerLinkActive="active">
                 <span class="material-icons">calendar_today</span>My calendars</a></li>
             <li>
-                <a *ngIf="!(authService.authState$ | async)?.isAuthenticated" (click)="oktaAuth.signInWithRedirect()">
+                <a *ngIf="!(authService.authState$ | async)?.isAuthenticated" (click)="login()">
                     <span class="material-icons">login</span>Login</a>
                 <a *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="logout()">
                     <span class="material-icons">logout</span>Logout</a>
             </li>
         </ul>
     </nav>
-    <div class="search-bar">
-        <input type="text" class="form-control" placeholder="Search..." id="text-input" [(ngModel)] = "searchString">
-
-        <select class="form-select" id="inline-dropdown" [(ngModel)] = "searchType">
-            <option value="eventName">By name</option>
-            <option value="startDate">By start date</option>
-            <option value="startDate">By category</option>
-            <option value="startDate">By organizer</option>
-            <option value="startDate">Is available</option>
-        </select>
-
-        <button >Search</button>
-    </div>
+    <app-search-bar></app-search-bar>
 </header>

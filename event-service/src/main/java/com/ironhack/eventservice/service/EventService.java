@@ -3,7 +3,9 @@ package com.ironhack.eventservice.service;
 import com.ironhack.eventservice.controller.dto.EventDTO;
 import com.ironhack.eventservice.dao.Event;
 import com.ironhack.eventservice.repository.EventRepository;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,6 +40,16 @@ public class EventService {
         List<Event> eventList = new ArrayList<>();
         for (var event : eventRepository.findAllOpenEventsSorted()) {
             if (event.getStartDate().compareTo(LocalDate.now()) >= 0) {
+                eventList.add(event);
+            }
+        }
+        return eventList;
+    }
+
+    public List<Event> getAllEventsByStartDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate) {
+        List<Event> eventList = new ArrayList<>();
+        for (var event : eventRepository.findAllOpenEventsSorted()) {
+            if (event.getStartDate().compareTo(startDate) >= 0) {
                 eventList.add(event);
             }
         }

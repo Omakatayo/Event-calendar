@@ -1,0 +1,7 @@
+.search-bar {
+    margin: 0 auto 10px auto;
+    grid-template-columns: 3fr 2fr 1fr;
+    display: grid;
+    height: 35px;
+    width: 60%;
+}

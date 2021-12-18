@@ -1,5 +1,5 @@
 <div class="event-list">
-    <div class="event" *ngFor="let event of events | async ">
+    <div class="event" *ngFor="let event of events">
         <div class="time">
             <span class="weekday">{{event.startDate | date :'EEE'}}</span>
             <span class="day">{{event.startDate | date :'d'}}</span>

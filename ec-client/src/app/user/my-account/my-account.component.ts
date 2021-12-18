@@ -35,8 +35,6 @@ export class MyAccountComponent implements OnInit {
     } else { this.accountType = this.tempUser.groups[0]; }
 
     this.user = new User(this.id, this.username, this.email, this.accountType);
-    console.log(this.user)
-
   }
 
 }

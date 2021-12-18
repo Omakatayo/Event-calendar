@@ -43,7 +43,7 @@ public class EventController {
 
     @GetMapping("/bydate/{startDate}")
     public List<Event> getAllEventsByStartDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate) {
-        return eventRepository.findByStartDate(startDate);
+        return eventService.getAllEventsByStartDate(startDate);
     }
 
     @GetMapping("/isavailable")
@@ -65,6 +65,11 @@ public class EventController {
     public String getEventNameById(@PathVariable Long id) {
         return eventService.getEventNameById(id);
     }
+
+//    @GetMapping("/{searchType}{parameter}")
+//    public List<Event> getEventByParameter(@PathVariable String searchType, @PathVariable String parameter) {
+//        return eventRepository.findByParameter(searchType, parameter);
+//    }
 
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable String id) {

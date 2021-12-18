@@ -11,7 +11,7 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class EventListComponent implements OnInit {
 
-  events!: Observable<EventItem[]>;
+  events!: EventItem[];
   today: Date = new Date();
 
   constructor(private router: Router, private eventService: EventService) { }
@@ -20,8 +20,16 @@ export class EventListComponent implements OnInit {
     this.reloadData();
   }
 
-  reloadData() {
-    this.events = this.eventService.getEventListOpen();
+  async reloadData() {
+    const searchType = localStorage.getItem('searchType')!;
+    const searchString = localStorage.getItem('searchString')!;
+    if(searchType) {
+      this.events = await this.eventService.getEventByParameter(searchType, searchString);
+      localStorage.removeItem('searchType');
+      localStorage.removeItem('searchString');
+    } else {
+      this.events = await this.eventService.getEventListOpen();
+    }
   }
 
   eventDetails(id: number) {

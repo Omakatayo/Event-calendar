@@ -16,8 +16,8 @@ export class EventService {
     return this.http.get(`${this.baseUrl}/all`);
   }
 
-  getEventListOpen(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/allopen`);
+  async getEventListOpen(): Promise<any> {
+    return this.http.get<any>(`${this.baseUrl}/allopen`).toPromise();
   }
 
   getEvent(id: number): Observable<any> {
@@ -42,6 +42,10 @@ export class EventService {
 
   async getEventListByOrganizer(organizer: string): Promise<any> {
     return this.http.get<any>(`${this.baseUrl}/byorganizer/${organizer}`).toPromise();
+  }
+
+  async getEventByParameter(searchType: string, parameter: any): Promise<any> {
+    return this.http.get<any>(`${this.baseUrl}/${searchType}${parameter}`).toPromise();
   }
 
   async getEventNameById(eventId: number): Promise<any> {

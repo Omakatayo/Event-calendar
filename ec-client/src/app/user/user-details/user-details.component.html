@@ -1,5 +1,20 @@
-Username: {{user.username}}
-<br>
-Email: {{user.email}}
-<br>
-Account type: {{user.accountType}}
+<div class="wrapper">
+    <div class="user-box">
+        <div>
+            Username
+            <br>
+            Email
+            <br>
+            Account type
+        </div>
+        <hr>
+        <div>
+            {{user.username}}
+            <br>
+            {{user.email}}
+            <br>
+            {{user.accountType}}
+        </div>
+        <div class="button"><button><a href="https://dev-46503723.okta.com/enduser/settings">User settings</a></button></div>
+    </div>
+</div>
