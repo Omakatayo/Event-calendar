@@ -19,9 +19,14 @@ export class UserCalendarViewComponent implements OnInit {
   tempArray2 = Array<any>();
   idNameArray = Array<any>();
   eventName!: any;
+  calendar: any;
+  calendarName!: any;
+  event!: any;
 
   constructor(private calendarService: CalendarService, private router: Router, 
               private route: ActivatedRoute, private eventService: EventService) {
+                this.calendar = new Calendar(0, "", "", []);
+              
    }
 
   async ngOnInit() {
@@ -61,10 +66,21 @@ export class UserCalendarViewComponent implements OnInit {
     this.idNameArray[id] = this.eventName  
   }
 
+
   async deleteEvent(calendarId: number, eventId: number) {
     await this.calendarService.removeEventFromCalendar(calendarId, eventId, {})
     this.reloadData();
   }
+
+  // addCalendar() {
+  //   this.username = this.route.snapshot.params['username'];
+  //   this.calendarService.createCalendar(this.calendar)
+  //     .subscribe( data => {
+  //       console.log(data);
+  //       this.calendar = new Calendar(0, this.calendarName, this.username, []);
+  //     }, error => console.log(error))
+  //   this.reloadData();
+  // }
 
 }
 

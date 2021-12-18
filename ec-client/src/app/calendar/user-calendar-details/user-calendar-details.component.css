@@ -1,0 +1,18 @@
+.wrapper {
+    padding: 0.8rem;
+}
+
+.material-icons {
+    margin: auto 0;
+    vertical-align: bottom;
+}
+
+.list {
+    display: flex;
+    gap: 20px;
+    border: 1px solid #fff;
+}
+
+.list:hover {
+    box-shadow: 0 0 0 1px rgb(226, 19, 19);
+}

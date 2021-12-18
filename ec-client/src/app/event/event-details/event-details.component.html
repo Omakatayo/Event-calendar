@@ -1,17 +1,37 @@
-<div *ngIf="event">
-    Event id: {{event.id}}<br>
-    Event name: {{event.eventName}}<br>
-    Event description: {{event.description}}<br>
-    Start date: {{event.startDate}}<br>
-    End date: {{event.endDate}}<br>
-    Availability: {{event.availability}}<br>
-    Registerd: {{event.registered}}<br>
+<div class="wrapper">
+    <div class="details-box" *ngIf="event">
+        <div>
+            Event name<br>
+            Event description<br>
+            Start date<br>
+            End date<br>
+            Availability<br>
+            Registerd<br>
+        </div>
+        <hr>
+        <div>
+            {{event.eventName}}<br>
+            {{event.description}}<br>
+            {{event.startDate}}<br>
+            {{event.endDate}}<br>
+            {{event.availability}}<br>
+            {{event.registered}}<br>
+        </div>
+        <div class="buttons">
+            <button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="displayCalendarList()">
+                Add to my calendar
+            </button>
+            <div id="calendar-list">
+                <div class="calendars">
+                    <button *ngFor="let calendar of calendars" (click)="addToCalendar(calendar.id)">
+                        {{calendar.name}}
+                    </button>
+                </div>
+            </div>
+            <button *ngIf="((authService.authState$ | async)?.isAuthenticated && compare) || event.availability <= 0" (click)="registerToEvent()">Register to event</button>
+            <button *ngIf="((authService.authState$ | async)?.isAuthenticated && !compare) || event.registered <= 0" (click)="unregisterFromEvent()">Unregister from event</button>
+        </div>
+    </div>
+    
+    
 </div>
-<button *ngIf="(authService.authState$ | async)?.isAuthenticated" (click)="displayCalendarList()">Add to my calendar</button>
-<div id="calendar-list">
-    <button *ngFor="let calendar of calendars" (click)="addToCalendar(calendar.id)">
-        {{calendar.name}}
-    </button>
-</div>
-<button *ngIf="((authService.authState$ | async)?.isAuthenticated && compare) || event.availability <= 0" (click)="registerToEvent()">Register to event</button>
-<button *ngIf="((authService.authState$ | async)?.isAuthenticated && !compare) || event.registered <= 0" (click)="unregisterFromEvent()">Unregister from event</button>

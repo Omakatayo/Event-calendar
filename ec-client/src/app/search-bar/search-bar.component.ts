@@ -24,7 +24,7 @@ export class SearchBarComponent implements OnInit {
   search() {
     localStorage.setItem('searchType', this.searchType);
     localStorage.setItem('searchString', this.searchString);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
     // this.eventService.getEventByParameter(this.searchType, this.searchString);
   }
 

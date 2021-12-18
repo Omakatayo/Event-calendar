@@ -5,6 +5,11 @@
     justify-content: center;
 }
 
+.tabs-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
 /**
  * Tabs Container
  */
@@ -116,4 +121,45 @@
 	.tabs {
 		width: 800px;
 	}
+}
+
+.add-box {
+	display: flex;
+    margin: 0 auto;
+    height: 45px;
+	justify-content: center;
+}
+
+button {
+    margin: 0 auto;
+    width: 220px;
+    height: 45px;
+    color: rgb(226, 19, 19);
+    background-color: #fff;
+    border: 3px solid rgb(226, 19, 19);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1em;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.5s;
+}
+  
+button:hover{
+    font-size: 1.2em;
+    width: 230px;
+    height: 50px;
+}
+
+.message, .wrapper {
+    padding: 0.8rem;
+    line-height: 2;
+    font-weight: 500
+}
+
+input {
+	height: 45px;
+	width: 400px;
+	margin-left: auto;
 }
