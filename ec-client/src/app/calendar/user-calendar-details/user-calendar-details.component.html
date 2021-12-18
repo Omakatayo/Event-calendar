@@ -1,13 +1,13 @@
-<div *ngIf="calendar.eventId.length > 0; else empty">   
-    Event list: 
-    <div *ngFor="let event of calendar.eventId" >     
-        <span [routerLink]="['/event-details', event]">{{ idNameArray[event] }}
+<div class="wrapper">
+    <div *ngIf="calendar.eventId.length > 0; else empty">   
+        <span style="font-weight: 500; font-size: 1.1em;">Event list:</span>
+        <br><br>
+        <div class="list" *ngFor="let event of calendar.eventId" >     
+            <span [routerLink]="['/event-details', event]">{{ idNameArray[event] }}</span>
             <span class="material-icons" (click)="deleteEvent(calendar.id, event)">delete_forever</span> 
-        </span>
-          
-    </div>        
+        </div>        
+    </div>
+    <ng-template #empty>
+        There are no events assigned to this calendar
+    </ng-template>
 </div>
-<ng-template #empty>
-    There are no events assigned to this calendar
-</ng-template>
-

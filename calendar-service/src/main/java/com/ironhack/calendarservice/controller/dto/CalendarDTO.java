@@ -15,4 +15,9 @@ public class CalendarDTO {
     private String name;
     private String username;
     private Set<Long> eventId;
+
+    public CalendarDTO(String name, String username) {
+        this.name = name;
+        this.username = username;
+    }
 }

@@ -15,6 +15,7 @@
 .event-box {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 h3 {
@@ -25,8 +26,13 @@ h3 {
     display: grid;
     grid-template-columns: 6fr 1fr 4fr 1fr;
     gap: 10px;
-    border-bottom: 2px solid;
-    padding: 20px 0;
+    padding: 20px;
+    border: 1px solid rgb(226, 19, 19);
+}
+
+.event:hover {
+    /* outline: none; */
+    box-shadow: 0 0 0 2px rgb(226, 19, 19);
 }
 
 .material-icons {
